@@ -1,0 +1,187 @@
+// TipTop — Vendor Credibility Platform
+// Prisma schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum UserRole {
+  VENDOR
+  CLIENT
+}
+
+enum CapabilityCategory {
+  CSA
+  HVAC
+  ELECTRICAL
+  MECHANICAL
+  CLEANROOM
+  EQUIPMENT
+  AUTOMATION
+}
+
+enum CapabilityLevel {
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum CapacityLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum SourcingMode {
+  INTERNAL
+  SUBCONTRACTED
+  HYBRID
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  fullName      String
+  role          UserRole
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  vendor        VendorProfile?
+  shortlists    ShortlistEntry[]
+}
+
+model VendorProfile {
+  id                  String    @id @default(cuid())
+  userId              String    @unique
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // A. Company Information
+  companyName         String
+  websiteUrl          String?
+  contactEmail        String?
+  contactPhone        String?
+  yearFounded         Int?
+  description         String?
+  logoUrl             String?
+
+  // B. Organisation & Resources
+  headcount           Int?
+  keyDisciplines      String[]              @default([])
+  sourcingMode        SourcingMode          @default(INTERNAL)
+  internalRatio       Int?                  // 0-100 % internal vs subcontracted
+
+  // C. Sectors served (pharma, biotech, food, semicon, ...)
+  sectors             String[]              @default([])
+
+  // F. Geographic regions of operation
+  regions             String[]              @default([])
+
+  // E. Quality & Compliance
+  qualitySystems      String[]              @default([])     // ISO 9001, GAMP5, ...
+  gmpExperience       Boolean               @default(false)
+  gmpYears            Int?
+  auditHistory        String?
+
+  // F. Capacity & availability
+  currentWorkload     CapacityLevel         @default(MEDIUM)
+  availableCapacity   CapacityLevel         @default(MEDIUM)
+  availableFromMonths Int?                  // months until next major availability
+
+  // Score (computed and stored)
+  vqiScore            Int                   @default(0)
+  scoreCapability     Int                   @default(0)
+  scoreCapacity       Int                   @default(0)
+  scoreCompliance     Int                   @default(0)
+  scoreOutput         Int                   @default(0)
+
+  // Profile completion progress
+  completionPercent   Int                   @default(0)
+  isPublished         Boolean               @default(false)
+
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+
+  locations           Location[]
+  capabilities        Capability[]
+  projects            Project[]
+  certifications      Certification[]
+  shortlistedBy       ShortlistEntry[]
+
+  @@index([vqiScore])
+  @@index([isPublished])
+}
+
+model Location {
+  id              String        @id @default(cuid())
+  vendorId        String
+  vendor          VendorProfile @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  city            String
+  country         String
+  isHeadquarters  Boolean       @default(false)
+
+  @@index([vendorId])
+}
+
+model Capability {
+  id          String              @id @default(cuid())
+  vendorId    String
+  vendor      VendorProfile       @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  category    CapabilityCategory
+  level       CapabilityLevel
+  notes       String?
+
+  @@unique([vendorId, category])
+  @@index([vendorId])
+  @@index([category])
+}
+
+model Project {
+  id              String        @id @default(cuid())
+  vendorId        String
+  vendor          VendorProfile @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  name            String
+  client          String?
+  projectType     String?       // greenfield, brownfield, retrofit, ...
+  scopeDelivered  String?
+  valueRange      String?       // <1M, 1-5M, 5-20M, >20M
+  year            Int?
+  isGmp           Boolean       @default(false)
+  sector          String?
+  location        String?
+
+  @@index([vendorId])
+}
+
+model Certification {
+  id            String        @id @default(cuid())
+  vendorId      String
+  vendor        VendorProfile @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  name          String        // ISO 9001, ISO 14001, GMP, ...
+  issuer        String?
+  issuedYear    Int?
+  expiresYear   Int?
+  reference     String?
+
+  @@index([vendorId])
+}
+
+model ShortlistEntry {
+  id          String        @id @default(cuid())
+  clientId    String
+  client      User          @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  vendorId    String
+  vendor      VendorProfile @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  notes       String?
+  createdAt   DateTime      @default(now())
+
+  @@unique([clientId, vendorId])
+  @@index([clientId])
+}
