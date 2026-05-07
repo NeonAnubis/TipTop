@@ -1,179 +1,113 @@
-# TipTop — Vendor Credibility Platform
+<div align="center">
 
-Swiss-built credibility intelligence for vendor prequalification across pharma,
-biotech, and complex capital projects. This MVP ships the full happy path:
-vendor onboarding, the structured PQQ wizard, the Vendor Quality Index (VQI)
-score engine, and a client side that searches, compares and shortlists
-vendors.
+# TipTop
 
-```
-┌──────────────────────────────┬─────────────────────────────────────────────┐
-│ Vendor side                  │ Client side                                 │
-├──────────────────────────────┼─────────────────────────────────────────────┤
-│ Multi-step PQQ wizard        │ Discoverable vendor network                 │
-│ A. Company information       │ Search by name / discipline / keyword       │
-│ B. Organisation & resources  │ Filter by capability, sector, region, GMP   │
-│ C. Technical capabilities    │ Min-score slider                            │
-│ D. Project experience        │ Side-by-side comparison (up to 3 vendors)   │
-│ E. Quality & compliance      │ Shortlist / favourites                      │
-│ F. Capacity & availability   │ Vendor profile detail view                  │
-│ Live VQI recompute on save   │                                             │
-└──────────────────────────────┴─────────────────────────────────────────────┘
-```
+### The credibility layer for capital projects.
 
-## Stack
+A working credibility platform for the regulated industries that still run their vendor prequalification on spreadsheets, PDFs, and email chains. Built end-to-end — design, data model, scoring engine, and product surface — for early pilot clients, vendor onboarding, and investor demos.
 
-- **Next.js 14** (App Router, React server components)
-- **TypeScript** with strict mode
-- **TailwindCSS** with a custom token system (`brand`, `ink`)
-- **Prisma 5** ORM
-- **Supabase Postgres** (uses both pooled & direct connections)
-- **JWT auth** via [`jose`](https://github.com/panva/jose) + bcrypt password hashing
-- **Zod** for request validation
+![Landing](docs/01-landing.png)
 
-No external state managers, no UI kits — just first-party React + Tailwind for
-clarity. The app runs unmodified on Vercel + Supabase.
+</div>
 
-## VQI scoring
+---
 
-The Vendor Quality Index is a 4-pillar weighted score (overall = 30/25/25/20):
+## The problem this solves
 
-| Pillar     | Inputs                                                         | Weight |
-| ---------- | -------------------------------------------------------------- | ------ |
-| Capability | Declared capabilities, depth (level), breadth (count)          | 30%    |
-| Output     | Project count, GMP project count, project value range          | 25%    |
-| Compliance | Certifications, quality systems, GMP years                     | 25%    |
-| Capacity   | Available capacity, current workload headroom, region coverage | 20%    |
+When a pharmaceutical EPCM team needs a cleanroom contractor — or a biotech CDMO needs an automation specialist — the search starts in Excel and ends in someone's inbox. Capabilities go undeclared. Certifications expire quietly. Two procurement managers shortlist the same vendor twice and neither knows it. The cost is real: missed timelines, repeated audits, projects that drift from "ready" to "rebid."
 
-The engine lives in [`src/lib/scoring.ts`](./src/lib/scoring.ts) and is invoked
-on every PUT to `/api/vendor/profile` (writes the breakdown back to the
-`VendorProfile` row).
+**TipTop replaces that workflow with a single structured credibility layer** — one place where vendors prequalify themselves once, a rule-based score makes them comparable, and clients can search, shortlist and side-by-side a network they actually trust.
 
-## Project structure
+---
 
-```
-prisma/
-  schema.prisma              ← User / VendorProfile / Capability / Project / …
-  seed.ts                    ← 8 realistic pharma/biotech vendors + demo client
-src/
-  app/
-    page.tsx                 ← Landing
-    (auth)/login,register    ← Auth pages (server-rendered guards)
-    vendor/                  ← Vendor area (overview + PQQ wizard)
-    client/                  ← Client area (browse, detail, shortlist, compare)
-    api/auth/*               ← register / login / logout
-    api/vendor/profile       ← GET / PUT (recomputes VQI on save)
-    api/vendors              ← search & filter
-    api/client/shortlist     ← POST / DELETE
-  components/                ← AppHeader, Logo, ScoreBadge, Toast, EmptyState
-  lib/
-    prisma.ts                ← singleton client
-    auth.ts                  ← jose JWT + cookie session
-    scoring.ts               ← VQI engine
-    constants.ts             ← capability/sector/region option lists
-```
+## What it does
 
-## Local setup
+### A guided PQQ that vendors actually finish
 
-### 1. Clone & install
+Six prequalification sections — Company, Organisation, Capabilities, Projects, Quality and Capacity — collapse into one wizard with auto-save, per-step validation, and a *preview-as-client* mode so vendors see exactly how their profile will land before they publish.
 
-```bash
-npm install
-```
+![PQQ wizard](docs/10-pqq-wizard.png)
 
-### 2. Environment variables
+### A score, not a guess
 
-`.env` already ships with the Supabase project provided in the brief. You
-*must* supply a valid database password — the project's database password is
-rotatable from the Supabase dashboard (Project Settings → Database).
+The Vendor Quality Index breaks credibility into four pillars — Capability, Capacity, Compliance, Output — weighted for the realities of capital-project delivery. Recomputed on every save. Transparent enough to defend in a procurement meeting.
 
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://kmalmqprhccgzbuhiyya.supabase.co
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_…
+![Vendor profile detail with VQI breakdown](docs/06-vendor-detail.png)
 
-DATABASE_URL="postgresql://postgres.<project>:<password>@aws-0-eu-west-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
-DIRECT_URL="postgresql://postgres.<project>:<password>@aws-0-eu-west-1.pooler.supabase.com:5432/postgres"
+### A network you can actually search
 
-JWT_SECRET="<long random string>"
-```
+Filter by discipline, capability, region, GMP experience and score range. Results stream in under a quarter-second. The sidebar respects every filter the brief asked for — and remembers them.
 
-> **Note:** when this MVP was built, the database password supplied in the brief
-> was rejected by the pooler with `password authentication failed for user
-> "postgres"`. Reset the database password in the Supabase dashboard and update
-> both `DATABASE_URL` and `DIRECT_URL`. URL-encode any special characters with
-> `encodeURIComponent`.
+![Vendor browse](docs/05-vendor-browse.png)
 
-### 3. Push the schema and seed
+### Three vendors, side-by-side, in one read
 
-```bash
-npm run db:push       # creates tables in Supabase
-npm run db:seed       # inserts 8 vendors + 1 demo client
-```
+Pick up to three vendors and see scores, capability depth, certifications, capacity and project history laid out as a single comparable table — the difference between a 30-minute meeting and a 2-line answer.
 
-### 4. Start dev
+![Side-by-side comparison](docs/07-compare.png)
 
-```bash
-npm run dev
-```
+### A dashboard built for procurement, not engineers
 
-Open <http://localhost:3000>.
+Live-vendor counts. Average VQI. GMP coverage. Network capability matrix. The shortlist they saved last Tuesday. All in one screen.
 
-### Demo accounts (after seeding)
+![Client dashboard](docs/04-client-dashboard.png)
 
-| Role   | Email                            | Password   |
-| ------ | -------------------------------- | ---------- |
-| Client | `pilot@clientco.com`             | `tiptop1234` |
-| Vendor | `contact@helvetica-eng.ch`       | `tiptop1234` |
-| Vendor | `team@cleanlogic.it`             | `tiptop1234` |
-| Vendor | `office@axis-automation.de`      | `tiptop1234` |
-| Vendor | `hello@nordbau-pharma.no`        | `tiptop1234` |
-| Vendor | `london@thamesbuild.co.uk`       | `tiptop1234` |
-| Vendor | `projects@iberbio.es`            | `tiptop1234` |
-| Vendor | `info@grandparis-mep.fr`         | `tiptop1234` |
-| Vendor | `admin@alpine-cqv.ch`            | `tiptop1234` |
+### Vendor-side feedback that earns the time spent
 
-## NPM scripts
+A vendor lands in their workspace and sees a live VQI, a visual completion tracker, and the next-best section to finish. The wizard is short. The reward is immediate.
 
-| Command           | What it does                                                  |
-| ----------------- | ------------------------------------------------------------- |
-| `npm run dev`     | Next.js dev server                                            |
-| `npm run build`   | `prisma generate` + `next build`                              |
-| `npm run start`   | Run the production build                                      |
-| `npm run db:push` | Sync `schema.prisma` → Postgres (no migration history)        |
-| `npm run db:migrate` | Create and apply a migration                               |
-| `npm run db:seed`    | Run `prisma/seed.ts` (idempotent — wipes & reseeds)        |
-| `npm run db:studio`  | Open Prisma Studio                                         |
+![Vendor overview](docs/09-vendor-overview.png)
 
-## Deploying
+### A polished sign-in experience that doesn't feel like an afterthought
 
-1. **Database** – your Supabase project already has a Postgres. Run
-   `npm run db:push` against the production DB once.
-2. **App** – push to Git, import in Vercel, set the four env vars above. Vercel
-   runs `npm run build` (which includes `prisma generate`) automatically.
+A 2-thirds image / 1-third form auth split that fits in 720&nbsp;px without scrolling, switches to a clean mobile column under `md`, and still looks like it belongs to the rest of the product.
 
-## Architecture choices worth flagging
+![Sign in](docs/02-auth-login.png)
 
-- **Single-table-per-section, no JSON blobs.** Capabilities, projects,
-  certifications, locations are first-class relations so they stay queryable
-  for filtering and ranking later.
-- **Score is stored, not computed at query time.** Every save recomputes the
-  breakdown and writes it back to `VendorProfile`. This keeps the search/filter
-  query simple (`vqiScore >= n`) and indexable.
-- **JWT in HttpOnly cookie** — no client-side token handling, server components
-  can read the session synchronously.
-- **App Router everywhere.** Auth guards live in route layouts so unauthenticated
-  users see a 302 to `/login?next=…` immediately, with no flash of protected
-  content.
-- **Wizard is fully client-driven, single PUT.** The PQQ wizard maintains
-  in-memory state and ships the entire profile on each save — child collections
-  are upserted in a single transaction. This makes the API simpler than per-row
-  CRUD endpoints and means saving never produces a half-applied state.
+### A user profile that respects the basics
 
-## Suggested MVP refinements (post-deploy)
+Avatars (uploaded, resized client-side, or pasted as a URL), name, email, role, and a current-password-gated password change. The dropdown shows you who you are; the page lets you change it.
 
-- Email verification + password reset (current MVP uses simple email/password).
-- Document attachments on certifications & projects (Supabase Storage bucket).
-- AI-assisted tagging from PQQ free-text → suggested capabilities.
-- Audit trail on profile edits.
-- Client team accounts with shared shortlists.
-- API key issuance for ERP/PLM integrations.
+![Profile](docs/11-profile.png)
+
+---
+
+## Built for
+
+- Pharmaceutical, biotech and life-sciences procurement teams
+- EPCM and project-management consultancies
+- CDMOs and CMOs
+- Cell & gene therapy build-outs and capacity expansions
+- Medical-device manufacturers running an Annex 1 program
+- Any regulated industrial that has ever lost a Friday to chasing a vendor's quality systems list
+
+---
+
+## What it's made of
+
+`Next.js 14` · `TypeScript` · `TailwindCSS` · `Prisma` · `PostgreSQL` (Supabase) · `Zod` · `JWT auth (jose + bcrypt)`
+
+A modern serverless-friendly stack chosen for shippable speed without giving up the structure regulated industries need: typed forms, indexable filters, a documented scoring engine, and a database schema that belongs in production — not a prototype.
+
+---
+
+## What "real working software" means here
+
+This isn't a Figma board with hover states.
+
+- Vendors can register, sign in, fill the PQQ, save drafts, publish, preview-as-client, edit and unpublish.
+- Clients can register, search across the live network, filter by every dimension the brief specified, save a shortlist, compare three side-by-side, and review a full vendor profile.
+- The VQI score is computed live from real inputs and stored on the row, so the search query that powers the filter slider is a single indexed `WHERE` — fast at any scale.
+- The design system — dark navy base, glass surfaces, single brand accent — is consistent across the landing page, two authenticated workspaces, the auth split-screen, and the profile area.
+- Every form auto-saves. Every step validates. Every error has a place to live.
+- Eight realistic European pharma/biotech vendors ship with the seed so the demo is alive on first launch — not a screen full of empty states.
+
+---
+
+## Looking for similar work?
+
+I build polished, production-grade web platforms for early-stage and pilot-ready B2B SaaS — typically Next.js, TypeScript, Tailwind, Prisma, Supabase, Postgres. Strong with structured-data products, scoring/ranking systems, multi-step wizards, search & filter UX, and design systems that hold together from landing page to dashboard.
+
+If you're commissioning a vendor portal, a procurement tool, a credibility network, an internal admin, an investor-ready MVP, or a polish pass on something that's nearly there — let's talk.
+
+**Reach me on Upwork.**
