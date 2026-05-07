@@ -176,7 +176,7 @@ export default async function ClientDashboard() {
                   <span className="text-sm font-semibold text-ink-900">{count}</span>
                 </div>
                 <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-                  <div className="h-full bg-gradient-to-r from-brand-400 to-brand-600 shadow-[0_0_6px_rgba(106,142,255,0.5)]" style={{ width: `${pct}%` }} />
+                  <div className="h-full bg-brand-500 shadow-[0_0_6px_rgba(106,142,255,0.5)]" style={{ width: `${pct}%` }} />
                 </div>
                 <div className="mt-1 text-xs text-ink-500">{pct}% of network</div>
               </Link>

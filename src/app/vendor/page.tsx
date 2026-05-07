@@ -117,7 +117,7 @@ export default async function VendorOverview() {
           </div>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
             <div
-              className="h-full bg-gradient-to-r from-brand-400 to-brand-600 shadow-[0_0_8px_rgba(106,142,255,0.5)]"
+              className="h-full bg-brand-500 shadow-[0_0_8px_rgba(106,142,255,0.5)]"
               style={{ width: `${vendor.completionPercent}%` }}
             />
           </div>
@@ -231,8 +231,6 @@ function FirstRunEmpty({ company }: { company: string }) {
   return (
     <div className="space-y-8">
       <div className="card relative overflow-hidden p-8 lg:p-10">
-        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand-500/30 blur-3xl" />
-        <div className="absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-violet-600/20 blur-3xl" />
         <div className="relative">
           <span className="chip-brand">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />

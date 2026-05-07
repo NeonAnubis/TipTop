@@ -13,14 +13,7 @@
   body {
     @apply text-ink-900;
     color: theme('colors.ink.900');
-    background-color: #070d24;
-    background-image:
-      radial-gradient(at 12% 0%, hsla(220, 70%, 30%, 0.65) 0px, transparent 55%),
-      radial-gradient(at 92% 6%, hsla(255, 60%, 28%, 0.45) 0px, transparent 55%),
-      radial-gradient(at 50% 100%, hsla(210, 70%, 22%, 0.55) 0px, transparent 60%),
-      radial-gradient(at 78% 70%, hsla(195, 60%, 22%, 0.30) 0px, transparent 60%);
-    background-attachment: fixed;
-    background-size: 100% 100%;
+    background-color: #0c1838;
     min-height: 100vh;
     font-feature-settings: 'cv11', 'ss01', 'ss03';
   }
@@ -77,10 +70,8 @@
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-midnight-700 disabled:cursor-not-allowed disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn relative overflow-hidden text-white shadow-glow;
-    background: linear-gradient(180deg, #6b8eff 0%, #3a5fff 60%, #2a4ae6 100%);
+    @apply btn bg-brand-500 text-white shadow-glow hover:bg-brand-400;
   }
-  .btn-primary:hover { filter: brightness(1.08); }
   .btn-secondary {
     @apply btn border border-white/15 bg-white/[0.05] text-ink-900 backdrop-blur-md hover:border-white/25 hover:bg-white/[0.08];
   }
@@ -114,12 +105,7 @@
 }
 
 .mesh-bg {
-  background-color: #070d24;
-  background-image:
-    radial-gradient(at 18% 20%, hsla(225, 90%, 55%, 0.30) 0px, transparent 50%),
-    radial-gradient(at 86% 8%, hsla(170, 80%, 50%, 0.18) 0px, transparent 45%),
-    radial-gradient(at 80% 80%, hsla(265, 80%, 60%, 0.22) 0px, transparent 50%),
-    radial-gradient(at 30% 96%, hsla(330, 85%, 65%, 0.14) 0px, transparent 50%);
+  background-color: #0c1838;
 }
 
 .mask-fade-bottom {
@@ -133,12 +119,7 @@
 }
 
 .text-gradient-brand {
-  background: linear-gradient(120deg, #8aabff 0%, #6b8eff 30%, #b69dff 65%, #8aabff 100%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient-pan 12s ease-in-out infinite;
+  color: #8aabff;
 }
 
 .border-gradient {
@@ -150,17 +131,13 @@
   inset: 0;
   padding: 1px;
   border-radius: inherit;
-  background: linear-gradient(140deg, rgba(106, 142, 255, 0.6), rgba(160, 120, 255, 0.35) 40%, transparent 70%);
+  background: rgba(106, 142, 255, 0.4);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
   pointer-events: none;
 }
 
-@keyframes gradient-pan {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -221,18 +198,4 @@
   animation: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Specular highlight on glass card top edge */
-.card::before,
-.glass::before,
-.glass-strong::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, transparent 30%);
-  pointer-events: none;
-  z-index: 0;
-}
-.card > *,
-.glass > *,
-.glass-strong > * { position: relative; z-index: 1; }
+/* (Glass surfaces rely on the bg-white/[0.04] tint + border for the frosted look) */

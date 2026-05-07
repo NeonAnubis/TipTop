@@ -70,13 +70,10 @@ function Hero() {
         aria-hidden="true"
         loading="eager"
         fetchPriority="high"
-        className="pointer-events-none absolute inset-0 -z-30 h-full w-full object-cover object-center brightness-[0.45] saturate-[1.1]"
+        className="pointer-events-none absolute inset-0 -z-30 h-full w-full object-cover object-center brightness-[0.30] saturate-[0.7]"
       />
-      <div className="absolute inset-0 -z-20 bg-gradient-to-br from-midnight-900/85 via-midnight-700/65 to-brand-900/55" />
-      <div className="absolute inset-0 -z-20 bg-gradient-to-r from-midnight-900/95 via-midnight-800/65 to-transparent lg:from-midnight-900/95 lg:via-midnight-800/45 lg:to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 -z-20 h-48 bg-gradient-to-t from-[#070d24] via-[#070d24]/70 to-transparent" />
-      <div className="dot-grid mask-fade-bottom absolute inset-0 -z-10 opacity-50" />
-      <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-midnight-900/80 to-transparent" />
+      <div className="absolute inset-0 -z-20 bg-[#0c1838]/85" />
+      <div className="dot-grid mask-fade-bottom absolute inset-0 -z-10 opacity-40" />
 
       <div className="mx-auto max-w-7xl px-6 pb-24 pt-16 lg:pb-32 lg:pt-24">
         <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
@@ -88,7 +85,7 @@ function Hero() {
             <h1 className="mt-6 text-[2.6rem] font-semibold leading-[1.05] tracking-[-0.02em] text-ink-950 sm:text-6xl lg:text-[4.25rem]">
               The credibility layer<br />
               for{' '}
-              <span className="text-gradient-brand">capital projects.</span>
+              <span className="text-brand-300">capital projects.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-600 sm:text-lg">
               TipTop replaces fragmented prequalification spreadsheets, PDFs and email chains with a
@@ -96,14 +93,11 @@ function Hero() {
               pharma, biotech and complex capital projects.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link href="/register?role=VENDOR" className="btn-primary group relative overflow-hidden px-5 py-2.5 text-sm">
-                <span className="relative z-10 flex items-center gap-2">
-                  List your company
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition group-hover:translate-x-0.5">
-                    <path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              <Link href="/register?role=VENDOR" className="btn-primary group px-5 py-2.5 text-sm">
+                List your company
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition group-hover:translate-x-0.5">
+                  <path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </Link>
               <Link href="/register?role=CLIENT" className="btn-secondary px-5 py-2.5 text-sm">
                 Browse the network
@@ -140,17 +134,14 @@ function Hero() {
 
 function HeroDashboard() {
   const pillars = [
-    { label: 'Capability', value: 92, color: 'from-brand-500 to-brand-700' },
-    { label: 'Capacity', value: 75, color: 'from-violet-500 to-violet-700' },
-    { label: 'Compliance', value: 95, color: 'from-emerald-500 to-emerald-700' },
-    { label: 'Output', value: 84, color: 'from-amber-400 to-amber-600' },
+    { label: 'Capability', value: 92 },
+    { label: 'Capacity', value: 75 },
+    { label: 'Compliance', value: 95 },
+    { label: 'Output', value: 84 },
   ];
 
   return (
     <div className="relative h-full">
-      {/* Soft glow halo */}
-      <div className="pointer-events-none absolute -inset-10 -z-10 rounded-[48px] bg-gradient-to-br from-brand-500/25 via-violet-600/20 to-emerald-500/15 blur-3xl" />
-
       {/* Main vendor card */}
       <div className="border-gradient relative z-10 rounded-3xl bg-white/[0.05] p-6 shadow-card backdrop-blur-xl lg:absolute lg:right-0 lg:top-2 lg:w-[460px]">
         <div className="flex items-start justify-between">
@@ -186,7 +177,7 @@ function HeroDashboard() {
               </div>
               <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
                 <div
-                  className={`h-full origin-left rounded-full bg-gradient-to-r ${p.color} animate-grow-bar`}
+                  className="h-full origin-left rounded-full bg-brand-500 animate-grow-bar"
                   style={{ ['--target' as string]: p.value / 100, width: `${p.value}%`, animationDelay: `${200 + i * 80}ms` }}
                 />
               </div>
@@ -270,17 +261,11 @@ function ScorePill({ score }: { score: number }) {
     <div className="relative grid h-20 w-20 place-items-center">
       <svg className="-rotate-90" width="70" height="70" viewBox="0 0 70 70">
         <circle cx="35" cy="35" r={r} stroke="rgba(255,255,255,0.10)" strokeWidth="6" fill="none" />
-        <defs>
-          <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#34d399" />
-            <stop offset="100%" stopColor="#10b981" />
-          </linearGradient>
-        </defs>
         <circle
           cx="35"
           cy="35"
           r={r}
-          stroke="url(#grad-emerald)"
+          stroke="#34d399"
           strokeWidth="6"
           fill="none"
           strokeLinecap="round"
@@ -382,13 +367,13 @@ function LogoStrip() {
 function Bento() {
   return (
     <section id="product" className="relative py-24 lg:py-28">
-      <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-px bg-white/10" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="chip-brand mx-auto">Product</span>
           <h2 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-ink-950 sm:text-5xl">
             Everything procurement runs on,<br className="hidden sm:block" />{' '}
-            <span className="text-gradient-brand">in one place.</span>
+            <span className="text-brand-300">in one place.</span>
           </h2>
           <p className="mt-4 text-base text-ink-600">
             A structured PQQ replaces the spreadsheet. A live VQI replaces the gut feel. Search,
@@ -423,7 +408,7 @@ function Bento() {
                     </div>
                     <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-white/10">
                       <div
-                        className="h-full origin-left rounded-full bg-gradient-to-r from-brand-400 to-brand-600 animate-grow-bar"
+                        className="h-full origin-left rounded-full bg-brand-500 animate-grow-bar"
                         style={{ ['--target' as string]: p.v / 100, width: `${p.v}%`, animationDelay: `${i * 100}ms` }}
                       />
                     </div>
@@ -536,10 +521,10 @@ function Bento() {
                       <div className="h-full bg-brand-400" style={{ width: `${[85, 63, 90][ri]}%` }} />
                     </div>
                     <div className="mt-2 h-1 overflow-hidden rounded-full bg-white/10">
-                      <div className="h-full bg-violet-400" style={{ width: `${[83, 85, 80][ri]}%` }} />
+                      <div className="h-full bg-brand-300" style={{ width: `${[83, 85, 80][ri]}%` }} />
                     </div>
                     <div className="mt-2 h-1 overflow-hidden rounded-full bg-white/10">
-                      <div className="h-full bg-emerald-400" style={{ width: `${[71, 72, 80][ri]}%` }} />
+                      <div className="h-full bg-brand-500" style={{ width: `${[71, 72, 80][ri]}%` }} />
                     </div>
                   </div>
                 ))}
@@ -568,8 +553,6 @@ function BentoCard({
         className ?? ''
       }`}
     >
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-gradient-to-b from-white/[0.06] via-transparent to-transparent" />
-      <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-brand-500/30 to-transparent opacity-0 blur-3xl transition group-hover:opacity-100" />
       <div className="relative h-full">{children}</div>
     </div>
   );
@@ -600,11 +583,7 @@ function HowItWorks() {
   ];
   return (
     <section id="how" className="relative py-24 lg:py-28">
-      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-transparent via-midnight-900/40 to-transparent" />
-      <div className="dot-grid-dark absolute inset-0 -z-10 opacity-50" />
-      <div className="absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-brand-700/20 via-transparent to-transparent" />
-      <div className="absolute -left-24 top-1/3 -z-10 h-96 w-96 rounded-full bg-brand-600/25 blur-3xl" />
-      <div className="absolute -right-32 bottom-0 -z-10 h-96 w-96 rounded-full bg-violet-600/20 blur-3xl" />
+      <div className="dot-grid-dark absolute inset-0 -z-10 opacity-30" />
 
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
@@ -612,36 +591,29 @@ function HowItWorks() {
             How it works
           </span>
           <h2 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-ink-950 sm:text-5xl">
-            From spreadsheet to{' '}
-            <span className="bg-gradient-to-r from-brand-300 via-violet-300 to-emerald-300 bg-clip-text text-transparent">
-              shortlist
-            </span>{' '}
-            in three steps.
+            From spreadsheet to <span className="text-brand-300">shortlist</span> in three steps.
           </h2>
         </div>
 
         <ol className="relative mt-16 grid gap-6 lg:grid-cols-3">
           {/* Connector line on desktop */}
-          <div className="pointer-events-none absolute inset-x-12 top-12 hidden h-px bg-gradient-to-r from-transparent via-white/30 to-transparent lg:block" />
+          <div className="pointer-events-none absolute inset-x-12 top-12 hidden h-px bg-white/15 lg:block" />
 
           {steps.map((s, i) => (
             <li
               key={s.n}
-              className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.07]"
+              className="relative rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.07]"
             >
-              <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-gradient-to-b from-white/[0.06] via-transparent to-transparent" />
-              <div className="relative">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-3xl font-semibold tracking-tight text-white/30">
-                    {s.n}
-                  </span>
-                  <span className="text-[11px] uppercase tracking-[0.14em] text-ink-500">{s.side}</span>
-                </div>
-                <h3 className="mt-3 text-xl font-semibold tracking-tight text-ink-950">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-600">{s.copy}</p>
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-3xl font-semibold tracking-tight text-white/30">
+                  {s.n}
+                </span>
+                <span className="text-[11px] uppercase tracking-[0.14em] text-ink-500">{s.side}</span>
               </div>
+              <h3 className="mt-3 text-xl font-semibold tracking-tight text-ink-950">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-600">{s.copy}</p>
               {i < steps.length - 1 && (
-                <div className="absolute -right-3 top-1/2 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-midnight-700 text-ink-700 lg:flex">
+                <div className="absolute -right-3 top-1/2 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#0c1838] text-ink-700 lg:flex">
                   →
                 </div>
               )}
@@ -662,7 +634,7 @@ function CompareTeaser() {
         <div>
           <span className="chip-brand">Vendor Quality Index</span>
           <h2 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-ink-950 sm:text-5xl">
-            Transparent. Weighted. <span className="text-gradient-brand">Live.</span>
+            Transparent. Weighted. <span className="text-brand-300">Live.</span>
           </h2>
           <p className="mt-4 max-w-lg text-ink-600">
             The VQI is calculated rule-first, not AI-first. Every input — capability levels, GMP
@@ -689,7 +661,7 @@ function CompareTeaser() {
         </div>
 
         <div className="relative">
-          <div className="border-gradient relative rounded-3xl bg-gradient-to-br from-midnight-700/80 to-midnight-900/80 p-6 text-white shadow-card backdrop-blur-xl">
+          <div className="border-gradient relative rounded-3xl bg-[#0c1838]/80 p-6 text-white shadow-card backdrop-blur-xl">
             <div className="flex items-center justify-between">
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/50">
@@ -720,7 +692,7 @@ function CompareTeaser() {
                   </div>
                   <div className="mt-2 h-1 overflow-hidden rounded-full bg-white/10">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-brand-300 to-emerald-300"
+                      className="h-full rounded-full bg-brand-400"
                       style={{ width: `${p.to}%` }}
                     />
                   </div>
@@ -728,7 +700,7 @@ function CompareTeaser() {
               ))}
             </div>
 
-            <div className="mt-6 flex items-center justify-between rounded-2xl bg-gradient-to-r from-brand-500/20 via-violet-500/15 to-emerald-500/20 p-4 ring-1 ring-white/10">
+            <div className="mt-6 flex items-center justify-between rounded-2xl bg-brand-500/15 p-4 ring-1 ring-white/10">
               <div>
                 <div className="text-[11px] uppercase tracking-[0.14em] text-white/50">Overall</div>
                 <div className="text-3xl font-semibold tracking-tight">87 / 100</div>
@@ -759,14 +731,12 @@ function CompareTeaser() {
 function FinalCta() {
   return (
     <section id="vendors" className="relative overflow-hidden py-24 lg:py-28">
-      <div className="dot-grid absolute inset-0 -z-10 opacity-30" />
-      <div className="absolute inset-x-0 top-1/3 -z-10 h-[480px] bg-gradient-to-b from-transparent via-brand-700/15 to-transparent" />
+      <div className="dot-grid absolute inset-0 -z-10 opacity-25" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="chip-brand mx-auto">Get started</span>
           <h2 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-ink-950 sm:text-5xl">
-            Two sides.{' '}
-            <span className="text-gradient-brand">One credibility network.</span>
+            Two sides. <span className="text-brand-300">One credibility network.</span>
           </h2>
           <p className="mt-4 text-ink-600">
             Free to join while in pilot. No credit card. Real working prototype.
@@ -775,14 +745,13 @@ function FinalCta() {
 
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
           <div className="border-gradient group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 shadow-card backdrop-blur-xl transition hover:bg-white/[0.06]">
-            <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-brand-500/30 blur-3xl" />
             <div className="relative">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand-300">
                 <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
                 For vendors
               </div>
               <h3 className="mt-3 text-3xl font-semibold tracking-tight text-ink-950">
-                Get prequalified <em className="not-italic text-gradient-brand">once.</em>
+                Get prequalified <em className="not-italic text-brand-300">once.</em>
                 <br />Reused forever.
               </h3>
               <p className="mt-3 max-w-md text-ink-600">
@@ -802,32 +771,24 @@ function FinalCta() {
               </ul>
               <Link
                 href="/register?role=VENDOR"
-                className="btn-primary mt-8 inline-flex group/btn relative overflow-hidden"
+                className="btn-primary mt-8 inline-flex group/btn"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  List your company
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition group-hover/btn:translate-x-0.5">
-                    <path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full" />
+                List your company
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition group-hover/btn:translate-x-0.5">
+                  <path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </Link>
             </div>
           </div>
 
-          <div className="border-gradient group relative overflow-hidden rounded-3xl bg-gradient-to-br from-midnight-700/80 via-midnight-800/80 to-midnight-900/80 p-8 text-white shadow-card backdrop-blur-xl transition hover:from-midnight-700/90 hover:to-midnight-900/90">
-            <div className="pointer-events-none absolute -right-24 -bottom-24 h-64 w-64 rounded-full bg-emerald-500/30 blur-3xl" />
-            <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-brand-500/30 blur-3xl" />
+          <div className="border-gradient group relative overflow-hidden rounded-3xl bg-[#0c1838]/80 p-8 text-white shadow-card backdrop-blur-xl transition hover:bg-[#0c1838]/90">
             <div className="relative">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-emerald-300">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 For clients
               </div>
               <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white">
-                Find the right partner{' '}
-                <span className="bg-gradient-to-r from-emerald-300 to-brand-300 bg-clip-text text-transparent">
-                  faster.
-                </span>
+                Find the right partner <span className="text-brand-300">faster.</span>
               </h3>
               <p className="mt-3 max-w-md text-white/70">
                 Search structured PQQ data, filter by discipline, GMP and score range, shortlist

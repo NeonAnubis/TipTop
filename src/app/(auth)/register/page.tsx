@@ -16,15 +16,15 @@ export default async function RegisterPage({
   const initialRole = searchParams.role === 'CLIENT' ? 'CLIENT' : 'VENDOR';
 
   return (
-    <div className="card mt-8 p-8">
-      <h1 className="text-2xl font-semibold text-ink-900">Create your account</h1>
+    <div>
+      <h1 className="text-2xl font-semibold tracking-tight text-ink-950">Create your account</h1>
       <p className="mt-1 text-sm text-ink-500">
-        Join TipTop to {initialRole === 'VENDOR' ? 'list your company' : 'discover qualified vendors'}.
+        Free to join while in pilot. No credit card.
       </p>
       <RegisterForm initialRole={initialRole} />
-      <p className="mt-6 text-center text-sm text-ink-500">
+      <p className="mt-5 text-center text-sm text-ink-500">
         Already have an account?{' '}
-        <Link href="/login" className="font-medium text-brand-700 hover:underline">
+        <Link href="/login" className="font-medium text-brand-300 hover:text-brand-200 hover:underline">
           Sign in
         </Link>
       </p>

@@ -10,13 +10,13 @@ export default async function LoginPage() {
   if (session) redirect(session.role === 'VENDOR' ? '/vendor' : '/client');
 
   return (
-    <div className="card mt-8 p-8">
-      <h1 className="text-2xl font-semibold text-ink-900">Sign in</h1>
+    <div>
+      <h1 className="text-2xl font-semibold tracking-tight text-ink-950">Sign in</h1>
       <p className="mt-1 text-sm text-ink-500">Welcome back. Continue where you left off.</p>
       <LoginForm />
       <p className="mt-6 text-center text-sm text-ink-500">
         New to TipTop?{' '}
-        <Link href="/register" className="font-medium text-brand-700 hover:underline">
+        <Link href="/register" className="font-medium text-brand-300 hover:text-brand-200 hover:underline">
           Create an account
         </Link>
       </p>
