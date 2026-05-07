@@ -51,6 +51,8 @@ model User {
   passwordHash  String
   fullName      String
   role          UserRole
+  avatarUrl     String?   // data URL or remote URL for the user's profile picture
+  jobTitle      String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
