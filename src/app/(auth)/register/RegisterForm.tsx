@@ -49,10 +49,10 @@ export function RegisterForm({ initialRole }: { initialRole: Role }) {
               type="button"
               onClick={() => setRole(r)}
               className={cn(
-                'rounded-xl border p-3 text-left transition',
+                'rounded-xl border p-3 text-left backdrop-blur-md transition',
                 role === r
-                  ? 'border-brand-500 bg-brand-50 ring-2 ring-brand-100'
-                  : 'border-ink-200 bg-white hover:bg-ink-50',
+                  ? 'border-brand-400/50 bg-brand-500/15 shadow-[0_0_18px_-4px_rgba(106,142,255,0.4)]'
+                  : 'border-white/10 bg-white/[0.04] hover:border-white/20 hover:bg-white/[0.07]',
               )}
             >
               <div className="text-sm font-semibold text-ink-900">
@@ -87,7 +87,7 @@ export function RegisterForm({ initialRole }: { initialRole: Role }) {
         <div className="help">At least 8 characters.</div>
       </div>
       {error && (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>
+        <div className="rounded-lg border border-red-400/30 bg-red-500/15 px-3 py-2 text-sm text-red-200 backdrop-blur">{error}</div>
       )}
       <button type="submit" className="btn-primary w-full" disabled={loading}>
         {loading ? 'Creating account…' : 'Create account'}

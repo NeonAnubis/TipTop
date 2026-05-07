@@ -15,7 +15,7 @@ export default async function ClientLayout({ children }: { children: React.React
   if (user.role !== 'CLIENT') redirect('/vendor');
 
   return (
-    <div className="min-h-screen bg-ink-50">
+    <div className="min-h-screen">
       <AppHeader user={{ fullName: user.fullName, email: user.email, role: user.role }} nav={NAV} />
       <main className="mx-auto max-w-7xl px-6 py-8">{children}</main>
     </div>

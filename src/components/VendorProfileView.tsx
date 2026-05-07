@@ -39,10 +39,10 @@ export function VendorProfileView({
               <img
                 src={vendor.logoUrl}
                 alt={`${vendor.companyName} logo`}
-                className="h-14 w-14 rounded-xl border border-ink-100 object-contain bg-white p-1"
+                className="h-14 w-14 rounded-xl border border-white/15 bg-white/[0.05] object-contain p-1 backdrop-blur"
               />
             ) : (
-              <div className="grid h-14 w-14 place-items-center rounded-xl bg-brand-50 text-base font-semibold text-brand-700">
+              <div className="grid h-14 w-14 place-items-center rounded-xl border border-brand-400/30 bg-brand-500/15 text-base font-semibold text-brand-200 backdrop-blur">
                 {vendor.companyName.slice(0, 2).toUpperCase()}
               </div>
             )}
@@ -68,7 +68,7 @@ export function VendorProfileView({
                     href={vendor.websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="chip hover:bg-ink-100"
+                    className="chip hover:bg-white/[0.10]"
                   >
                     Website ↗
                   </a>
@@ -92,15 +92,15 @@ export function VendorProfileView({
             { label: 'Compliance', value: vendor.scoreCompliance },
             { label: 'Output', value: vendor.scoreOutput },
           ].map((p) => (
-            <div key={p.label} className="rounded-xl border border-ink-100 bg-ink-50/40 p-4">
+            <div key={p.label} className="rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-medium uppercase tracking-wider text-ink-500">
                   {p.label}
                 </span>
                 <span className="text-base font-semibold text-ink-900">{p.value}</span>
               </div>
-              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink-200">
-                <div className="h-full bg-brand-500" style={{ width: `${p.value}%` }} />
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full bg-gradient-to-r from-brand-400 to-brand-600 shadow-[0_0_6px_rgba(106,142,255,0.5)]" style={{ width: `${p.value}%` }} />
               </div>
             </div>
           ))}
@@ -116,7 +116,7 @@ export function VendorProfileView({
               return (
                 <div
                   key={cat.value}
-                  className="flex items-center justify-between rounded-xl border border-ink-100 bg-white p-3"
+                  className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.04] p-3 backdrop-blur-md"
                 >
                   <div>
                     <div className="text-sm font-semibold text-ink-900">{cat.label}</div>
@@ -239,7 +239,7 @@ export function VendorProfileView({
                   vendor.certifications.map((c) => (
                     <div
                       key={c.id}
-                      className="flex items-center justify-between rounded-lg border border-ink-100 bg-white px-3 py-2"
+                      className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 backdrop-blur-md"
                     >
                       <div>
                         <div className="text-sm font-medium text-ink-900">{c.name}</div>

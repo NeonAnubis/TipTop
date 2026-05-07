@@ -121,10 +121,10 @@ export function calculateCompletion(vendor: VendorWithRelations): number {
 }
 
 export function scoreColor(score: number): string {
-  if (score >= 80) return 'text-emerald-700 bg-emerald-50 border-emerald-200';
-  if (score >= 60) return 'text-brand-700 bg-brand-50 border-brand-200';
-  if (score >= 40) return 'text-amber-700 bg-amber-50 border-amber-200';
-  return 'text-red-700 bg-red-50 border-red-200';
+  if (score >= 80) return 'text-emerald-200 bg-emerald-500/15 border-emerald-400/30 backdrop-blur';
+  if (score >= 60) return 'text-brand-200 bg-brand-500/15 border-brand-400/30 backdrop-blur';
+  if (score >= 40) return 'text-amber-200 bg-amber-500/15 border-amber-400/30 backdrop-blur';
+  return 'text-red-200 bg-red-500/15 border-red-400/30 backdrop-blur';
 }
 
 export function scoreLabel(score: number): string {

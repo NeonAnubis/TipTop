@@ -31,8 +31,8 @@ export default async function VendorPreviewPage() {
           <span
             className={`chip ${
               vendor.isPublished
-                ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
-                : 'text-ink-600'
+                ? 'border-emerald-400/30 bg-emerald-500/15 text-emerald-200'
+                : 'text-ink-700'
             }`}
           >
             {vendor.isPublished ? 'Live' : 'Draft preview'}
@@ -43,7 +43,7 @@ export default async function VendorPreviewPage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-brand-200 bg-brand-50/60 p-3 text-xs text-brand-900">
+      <div className="rounded-2xl border border-brand-400/30 bg-brand-500/15 p-3 text-xs text-brand-100 backdrop-blur">
         This is what clients see when they open your profile.
         {!vendor.isPublished && (
           <> It is not yet visible — finish the PQQ and publish to go live.</>

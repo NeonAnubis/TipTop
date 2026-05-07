@@ -54,8 +54,8 @@ export default async function VendorOverview() {
             <span
               className={`chip text-xs ${
                 vendor.isPublished
-                  ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
-                  : 'border-amber-200 bg-amber-50 text-amber-800'
+                  ? 'border-emerald-400/30 bg-emerald-500/15 text-emerald-200'
+                  : 'border-amber-400/30 bg-amber-500/15 text-amber-200'
               }`}
             >
               {vendor.isPublished ? 'Live' : 'Draft'}
@@ -96,12 +96,12 @@ export default async function VendorOverview() {
             { label: 'Compliance', value: vendor.scoreCompliance },
             { label: 'Output', value: vendor.scoreOutput },
           ].map((p) => (
-            <div key={p.label} className="rounded-xl border border-ink-100 bg-ink-50/40 p-4">
+            <div key={p.label} className="rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-ink-700">{p.label}</span>
                 <span className="text-lg font-semibold text-ink-900">{p.value}</span>
               </div>
-              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink-200">
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
                 <div className="h-full bg-brand-500" style={{ width: `${p.value}%` }} />
               </div>
             </div>
@@ -115,9 +115,9 @@ export default async function VendorOverview() {
             <h3 className="text-base font-semibold text-ink-900">Profile completion</h3>
             <span className="text-sm font-semibold text-brand-700">{vendor.completionPercent}%</span>
           </div>
-          <div className="mt-3 h-2 overflow-hidden rounded-full bg-ink-100">
+          <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
             <div
-              className="h-full bg-gradient-to-r from-brand-500 to-brand-700"
+              className="h-full bg-gradient-to-r from-brand-400 to-brand-600 shadow-[0_0_8px_rgba(106,142,255,0.5)]"
               style={{ width: `${vendor.completionPercent}%` }}
             />
           </div>
@@ -127,8 +127,8 @@ export default async function VendorOverview() {
                 <span
                   className={
                     c.done
-                      ? 'grid h-4 w-4 place-items-center rounded-full bg-emerald-500 text-white'
-                      : 'h-4 w-4 rounded-full border border-ink-200 bg-white'
+                      ? 'grid h-4 w-4 place-items-center rounded-full bg-emerald-500 text-white shadow-[0_0_8px_rgba(52,211,153,0.5)]'
+                      : 'h-4 w-4 rounded-full border border-white/15 bg-white/[0.05]'
                   }
                 >
                   {c.done && (
@@ -144,7 +144,7 @@ export default async function VendorOverview() {
           {remaining.length > 0 && (
             <Link
               href="/vendor/profile"
-              className="mt-4 inline-flex w-full items-center justify-center rounded-lg border border-brand-200 bg-brand-50 px-3 py-2 text-sm font-medium text-brand-800 transition hover:bg-brand-100"
+              className="mt-4 inline-flex w-full items-center justify-center rounded-lg border border-brand-400/40 bg-brand-500/15 px-3 py-2 text-sm font-medium text-brand-200 backdrop-blur transition hover:bg-brand-500/25"
             >
               Resume next: {remaining[0].label} →
             </Link>
@@ -160,7 +160,7 @@ export default async function VendorOverview() {
               return (
                 <div
                   key={cat.value}
-                  className="flex items-center justify-between rounded-xl border border-ink-100 bg-white px-4 py-3"
+                  className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 backdrop-blur-md"
                 >
                   <div>
                     <div className="text-sm font-semibold text-ink-900">{cat.label}</div>
@@ -231,7 +231,8 @@ function FirstRunEmpty({ company }: { company: string }) {
   return (
     <div className="space-y-8">
       <div className="card relative overflow-hidden p-8 lg:p-10">
-        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand-100 opacity-50 blur-3xl" />
+        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand-500/30 blur-3xl" />
+        <div className="absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-violet-600/20 blur-3xl" />
         <div className="relative">
           <span className="chip-brand">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
@@ -258,7 +259,7 @@ function FirstRunEmpty({ company }: { company: string }) {
       <ol className="grid gap-4 sm:grid-cols-3">
         {steps.map((s) => (
           <li key={s.n} className="card p-5">
-            <div className="grid h-8 w-8 place-items-center rounded-full bg-brand-50 text-sm font-semibold text-brand-700">
+            <div className="grid h-8 w-8 place-items-center rounded-full border border-brand-400/30 bg-brand-500/20 text-sm font-semibold text-brand-200">
               {s.n}
             </div>
             <div className="mt-3 text-base font-semibold text-ink-900">{s.title}</div>
@@ -278,11 +279,11 @@ function FirstRunEmpty({ company }: { company: string }) {
             { label: 'Capacity', hint: 'Workload headroom & regions' },
             { label: 'Compliance', hint: 'Certs, quality systems, GMP' },
           ].map((p) => (
-            <div key={p.label} className="rounded-xl border border-ink-100 bg-white p-4">
+            <div key={p.label} className="rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md">
               <div className="text-xs uppercase tracking-wider text-ink-500">{p.label}</div>
               <div className="mt-1 text-base font-semibold text-ink-900">— / 100</div>
-              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink-100">
-                <div className="h-full w-1/4 rounded-full bg-ink-200" />
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full w-1/4 rounded-full bg-white/20" />
               </div>
               <div className="mt-2 text-xs text-ink-500">{p.hint}</div>
             </div>

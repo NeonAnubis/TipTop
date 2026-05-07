@@ -145,8 +145,8 @@ export function ShortlistManager({ entries: initial }: { entries: ShortlistEntry
                   className={cn(
                     'grid h-6 w-6 shrink-0 place-items-center rounded-md border transition',
                     isSelected
-                      ? 'border-brand-500 bg-brand-500 text-white'
-                      : 'border-ink-300 bg-white text-transparent hover:border-brand-400',
+                      ? 'border-brand-400 bg-brand-500 text-white shadow-[0_0_10px_rgba(106,142,255,0.5)]'
+                      : 'border-white/25 bg-white/[0.05] text-transparent backdrop-blur hover:border-brand-400/60',
                   )}
                   aria-label={isSelected ? 'Deselect vendor' : 'Select vendor for comparison'}
                 >
@@ -159,23 +159,23 @@ export function ShortlistManager({ entries: initial }: { entries: ShortlistEntry
                   <img
                     src={e.logoUrl}
                     alt=""
-                    className="h-10 w-10 rounded-lg border border-ink-100 object-contain bg-white p-0.5"
+                    className="h-10 w-10 rounded-lg border border-white/15 bg-white/[0.05] object-contain p-0.5 backdrop-blur"
                   />
                 ) : (
-                  <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-50 text-sm font-semibold text-brand-700">
+                  <div className="grid h-10 w-10 place-items-center rounded-lg border border-brand-400/30 bg-brand-500/15 text-sm font-semibold text-brand-200 backdrop-blur">
                     {e.companyName.slice(0, 2).toUpperCase()}
                   </div>
                 )}
                 <div className="min-w-0">
                   <Link
                     href={`/client/vendors/${e.vendorId}`}
-                    className="block truncate text-base font-semibold text-ink-900 hover:text-brand-700"
+                    className="block truncate text-base font-semibold text-ink-900 hover:text-brand-300"
                   >
                     {e.companyName}
                   </Link>
                   <div className="truncate text-xs text-ink-500">
                     {e.location ?? 'Location not specified'}
-                    {e.gmpExperience && <span className="ml-2 text-emerald-700">· GMP</span>}
+                    {e.gmpExperience && <span className="ml-2 text-emerald-300">· GMP</span>}
                   </div>
                   <div className="mt-1.5 flex flex-wrap gap-1">
                     {e.capabilities.slice(0, 4).map((c) => (
@@ -203,7 +203,7 @@ export function ShortlistManager({ entries: initial }: { entries: ShortlistEntry
       </ul>
 
       {selected.size > 0 && (
-        <div className="sticky bottom-4 z-20 mx-auto flex max-w-2xl items-center justify-between gap-3 rounded-2xl border border-brand-200 bg-white/95 px-4 py-3 shadow-card backdrop-blur">
+        <div className="sticky bottom-4 z-20 mx-auto flex max-w-2xl items-center justify-between gap-3 rounded-2xl border border-brand-400/30 bg-midnight-700/80 px-4 py-3 shadow-card backdrop-blur-xl">
           <div className="flex flex-1 items-center gap-2 overflow-x-auto">
             <span className="text-xs font-medium uppercase tracking-wider text-ink-500">
               Selected

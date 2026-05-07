@@ -31,10 +31,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
           <div
             key={t.id}
             className={cn(
-              'pointer-events-auto rounded-xl border px-4 py-3 text-sm shadow-card',
-              t.variant === 'success' && 'border-emerald-200 bg-emerald-50 text-emerald-800',
-              t.variant === 'error' && 'border-red-200 bg-red-50 text-red-800',
-              t.variant === 'info' && 'border-ink-200 bg-white text-ink-800',
+              'pointer-events-auto rounded-xl border px-4 py-3 text-sm shadow-card backdrop-blur-xl',
+              t.variant === 'success' && 'border-emerald-400/30 bg-emerald-500/15 text-emerald-100',
+              t.variant === 'error' && 'border-red-400/30 bg-red-500/15 text-red-100',
+              t.variant === 'info' && 'border-white/15 bg-white/[0.06] text-ink-900',
             )}
           >
             {t.message}

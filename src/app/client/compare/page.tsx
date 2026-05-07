@@ -60,24 +60,24 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
         <table className="w-full min-w-[820px] border-separate border-spacing-0 text-sm">
           <thead>
             <tr>
-              <th className="sticky left-0 z-10 w-44 bg-ink-50 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-ink-500"></th>
+              <th className="sticky left-0 z-10 w-44 bg-midnight-800/70 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-ink-500 backdrop-blur-md"></th>
               {ordered.map((v) => (
-                <th key={v.id} className="min-w-[260px] border-b border-ink-100 bg-white p-4 text-left align-top">
+                <th key={v.id} className="min-w-[260px] border-b border-white/10 bg-white/[0.04] p-4 text-left align-top backdrop-blur-md">
                   <div className="flex items-center gap-3">
                     {v.logoUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={v.logoUrl}
                         alt=""
-                        className="h-10 w-10 rounded-lg border border-ink-100 object-contain bg-white p-0.5"
+                        className="h-10 w-10 rounded-lg border border-white/15 bg-white/[0.05] object-contain p-0.5 backdrop-blur"
                       />
                     ) : (
-                      <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-50 text-sm font-semibold text-brand-700">
+                      <div className="grid h-10 w-10 place-items-center rounded-lg border border-brand-400/30 bg-brand-500/15 text-sm font-semibold text-brand-200 backdrop-blur">
                         {v.companyName.slice(0, 2).toUpperCase()}
                       </div>
                     )}
                     <div>
-                      <Link href={`/client/vendors/${v.id}`} className="text-base font-semibold text-ink-900 hover:text-brand-700">
+                      <Link href={`/client/vendors/${v.id}`} className="text-base font-semibold text-ink-900 hover:text-brand-300">
                         {v.companyName}
                       </Link>
                       <div className="text-xs text-ink-500">
@@ -92,7 +92,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
           <tbody>
             <CompareRow label="VQI score" sticky>
               {ordered.map((v) => (
-                <td key={v.id} className="border-b border-ink-100 bg-white p-4 align-top">
+                <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   <ScoreRing score={v.vqiScore} size={84} />
                 </td>
               ))}
@@ -115,7 +115,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
               {ordered.map((v) => {
                 const map = new Map(v.capabilities.map((c) => [c.category, c.level]));
                 return (
-                  <td key={v.id} className="border-b border-ink-100 bg-white p-4 align-top text-sm">
+                  <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md text-sm">
                     <ul className="space-y-1">
                       {CAPABILITY_CATEGORIES.map((cat) => {
                         const lv = map.get(cat.value);
@@ -138,7 +138,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
 
             <CompareRow label="GMP experience">
               {ordered.map((v) => (
-                <td key={v.id} className="border-b border-ink-100 bg-white p-4 align-top">
+                <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   {v.gmpExperience ? (
                     <span className="chip-brand">Yes · {v.gmpYears ?? '—'} yrs</span>
                   ) : (
@@ -150,7 +150,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
 
             <CompareRow label="Headcount">
               {ordered.map((v) => (
-                <td key={v.id} className="border-b border-ink-100 bg-white p-4 align-top">
+                <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   {v.headcount ? v.headcount.toLocaleString() : '—'}
                 </td>
               ))}
@@ -158,7 +158,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
 
             <CompareRow label="Sectors">
               {ordered.map((v) => (
-                <td key={v.id} className="border-b border-ink-100 bg-white p-4 align-top">
+                <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   <div className="flex flex-wrap gap-1.5">
                     {v.sectors.length === 0 ? (
                       <span className="text-ink-400">—</span>
@@ -172,7 +172,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
 
             <CompareRow label="Regions">
               {ordered.map((v) => (
-                <td key={v.id} className="border-b border-ink-100 bg-white p-4 align-top">
+                <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   <div className="flex flex-wrap gap-1.5">
                     {v.regions.length === 0 ? (
                       <span className="text-ink-400">—</span>
@@ -186,7 +186,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
 
             <CompareRow label="Availability">
               {ordered.map((v) => (
-                <td key={v.id} className="border-b border-ink-100 bg-white p-4 align-top">
+                <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   <div className="flex flex-wrap items-center gap-1.5">
                     <span className="chip-brand">Available · {v.availableCapacity.toLowerCase()}</span>
                     <span className="chip">Workload · {v.currentWorkload.toLowerCase()}</span>
@@ -197,7 +197,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
 
             <CompareRow label="Certifications">
               {ordered.map((v) => (
-                <td key={v.id} className="border-b border-ink-100 bg-white p-4 align-top">
+                <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   <div className="flex flex-wrap gap-1.5">
                     {v.certifications.length === 0 ? (
                       <span className="text-ink-400">—</span>
@@ -213,7 +213,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
               {ordered.map((v) => {
                 const gmp = v.projects.filter((p) => p.isGmp).length;
                 return (
-                  <td key={v.id} className="border-b border-ink-100 bg-white p-4 align-top">
+                  <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                     <div className="text-sm text-ink-700">
                       <div>
                         <strong>{v.projects.length}</strong> projects · <strong>{gmp}</strong> GMP
@@ -234,7 +234,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
         </table>
       </div>
 
-      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-ink-100 bg-white p-4 text-sm text-ink-600">
+      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-ink-700 backdrop-blur-md">
         <span className="font-semibold text-ink-900">Quick read:</span>
         <span>Best overall:</span>
         {(() => {
@@ -263,8 +263,8 @@ function CompareRow({
   return (
     <tr>
       <th
-        className={`sticky left-0 z-10 bg-ink-50 px-4 py-3 text-left align-top text-xs font-semibold uppercase tracking-wider text-ink-500 ${
-          sticky ? 'border-b border-ink-100' : 'border-b border-ink-100'
+        className={`sticky left-0 z-10 bg-midnight-800/70 px-4 py-3 text-left align-top text-xs font-semibold uppercase tracking-wider text-ink-500 backdrop-blur-md ${
+          sticky ? 'border-b border-white/10' : 'border-b border-white/10'
         }`}
       >
         {label}
@@ -276,13 +276,13 @@ function CompareRow({
 
 function ScoreCell({ score }: { score: number }) {
   return (
-    <td className="border-b border-ink-100 bg-white p-4 align-top">
+    <td className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
       <div className="flex items-center justify-between">
         <span className="text-base font-semibold text-ink-900">{score}</span>
         <ScoreBadge score={score} size="sm" />
       </div>
-      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink-200">
-        <div className="h-full bg-brand-500" style={{ width: `${score}%` }} />
+      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
+        <div className="h-full bg-gradient-to-r from-brand-400 to-brand-600 shadow-[0_0_6px_rgba(106,142,255,0.5)]" style={{ width: `${score}%` }} />
       </div>
     </td>
   );

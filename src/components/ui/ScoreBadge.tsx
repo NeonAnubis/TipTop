@@ -45,16 +45,16 @@ export function ScoreRing({
   const offset = c - (score / 100) * c;
   const color =
     score >= 80
-      ? '#059669'
+      ? '#34d399'
       : score >= 60
-        ? '#243df5'
+        ? '#6b8eff'
         : score >= 40
-          ? '#d97706'
-          : '#dc2626';
+          ? '#fbbf24'
+          : '#f87171';
   return (
     <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
       <svg width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={r} stroke="#e5e7eb" strokeWidth={stroke} fill="none" />
+        <circle cx={size / 2} cy={size / 2} r={r} stroke="rgba(255,255,255,0.10)" strokeWidth={stroke} fill="none" />
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -65,7 +65,7 @@ export function ScoreRing({
           strokeLinecap="round"
           strokeDasharray={c}
           strokeDashoffset={offset}
-          style={{ transition: 'stroke-dashoffset 600ms ease' }}
+          style={{ transition: 'stroke-dashoffset 600ms ease', filter: `drop-shadow(0 0 6px ${color}66)` }}
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">

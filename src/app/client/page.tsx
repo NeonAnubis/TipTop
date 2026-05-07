@@ -78,7 +78,7 @@ export default async function ClientDashboard() {
         <div className="card p-6 lg:col-span-2">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-semibold text-ink-900">Top-rated vendors</h2>
-            <Link href="/client/vendors" className="text-sm font-medium text-brand-700 hover:underline">
+            <Link href="/client/vendors" className="text-sm font-medium text-brand-300 hover:text-brand-200 hover:underline">
               Browse all →
             </Link>
           </div>
@@ -92,16 +92,16 @@ export default async function ClientDashboard() {
             <ul className="mt-4 divide-y divide-ink-100">
               {top.map((v, i) => (
                 <li key={v.id} className="flex items-center gap-4 py-3">
-                  <div className="grid h-7 w-7 place-items-center rounded-full bg-ink-100 text-xs font-semibold text-ink-700">
+                  <div className="grid h-7 w-7 place-items-center rounded-full border border-white/10 bg-white/[0.06] text-xs font-semibold text-ink-700 backdrop-blur">
                     {i + 1}
                   </div>
-                  <div className="grid h-9 w-9 place-items-center rounded-lg bg-brand-50 text-sm font-semibold text-brand-700">
+                  <div className="grid h-9 w-9 place-items-center rounded-lg border border-brand-400/30 bg-brand-500/15 text-sm font-semibold text-brand-200 backdrop-blur">
                     {v.companyName.slice(0, 2).toUpperCase()}
                   </div>
                   <div className="flex-1 min-w-0">
                     <Link
                       href={`/client/vendors/${v.id}`}
-                      className="block truncate text-sm font-semibold text-ink-900 hover:text-brand-700"
+                      className="block truncate text-sm font-semibold text-ink-900 hover:text-brand-300"
                     >
                       {v.companyName}
                     </Link>
@@ -109,7 +109,7 @@ export default async function ClientDashboard() {
                       {v.locations[0]
                         ? `${v.locations[0].city}, ${v.locations[0].country}`
                         : 'Location not specified'}
-                      {v.gmpExperience && <span className="ml-2 text-emerald-700">· GMP</span>}
+                      {v.gmpExperience && <span className="ml-2 text-emerald-300">· GMP</span>}
                     </div>
                   </div>
                   <div className="hidden gap-1 sm:flex">
@@ -129,7 +129,7 @@ export default async function ClientDashboard() {
         <div className="card p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-semibold text-ink-900">Recent shortlist</h2>
-            <Link href="/client/shortlist" className="text-sm font-medium text-brand-700 hover:underline">
+            <Link href="/client/shortlist" className="text-sm font-medium text-brand-300 hover:text-brand-200 hover:underline">
               Open →
             </Link>
           </div>
@@ -141,10 +141,10 @@ export default async function ClientDashboard() {
           ) : (
             <ul className="mt-4 space-y-2">
               {recentShortlist.map((e) => (
-                <li key={e.id} className="flex items-center justify-between gap-2 rounded-lg border border-ink-100 bg-white px-3 py-2">
+                <li key={e.id} className="flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 backdrop-blur-md">
                   <Link
                     href={`/client/vendors/${e.vendor.id}`}
-                    className="truncate text-sm font-medium text-ink-900 hover:text-brand-700"
+                    className="truncate text-sm font-medium text-ink-900 hover:text-brand-300"
                   >
                     {e.vendor.companyName}
                   </Link>
@@ -169,14 +169,14 @@ export default async function ClientDashboard() {
               <Link
                 key={cat.value}
                 href={`/client/vendors?cap=${cat.value}`}
-                className="rounded-xl border border-ink-100 bg-white p-3 transition hover:border-brand-300"
+                className="rounded-xl border border-white/10 bg-white/[0.04] p-3 backdrop-blur-md transition hover:border-brand-400/40 hover:bg-white/[0.06]"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-semibold text-ink-900">{cat.label}</span>
                   <span className="text-sm font-semibold text-ink-900">{count}</span>
                 </div>
-                <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink-100">
-                  <div className="h-full bg-brand-500" style={{ width: `${pct}%` }} />
+                <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
+                  <div className="h-full bg-gradient-to-r from-brand-400 to-brand-600 shadow-[0_0_6px_rgba(106,142,255,0.5)]" style={{ width: `${pct}%` }} />
                 </div>
                 <div className="mt-1 text-xs text-ink-500">{pct}% of network</div>
               </Link>
@@ -204,7 +204,7 @@ function StatCard({
       <div className="text-xs uppercase tracking-wider text-ink-500">{label}</div>
       <div
         className={`mt-1 text-3xl font-semibold ${
-          accent === 'good' ? 'text-emerald-700' : 'text-ink-900'
+          accent === 'good' ? 'text-emerald-300' : 'text-ink-900'
         }`}
       >
         {value}

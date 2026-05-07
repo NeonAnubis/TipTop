@@ -14,7 +14,7 @@ export default async function VendorLayout({ children }: { children: React.React
   if (user.role !== 'VENDOR') redirect('/client');
 
   return (
-    <div className="min-h-screen bg-ink-50">
+    <div className="min-h-screen">
       <AppHeader
         user={{ fullName: user.fullName, email: user.email, role: user.role }}
         nav={NAV}

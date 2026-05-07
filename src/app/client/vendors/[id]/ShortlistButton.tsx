@@ -41,8 +41,8 @@ export function ShortlistButton({
       className={cn(
         'btn',
         active
-          ? 'border border-amber-300 bg-amber-50 text-amber-800 hover:bg-amber-100'
-          : 'border border-ink-200 bg-white text-ink-800 hover:bg-ink-50',
+          ? 'border border-amber-400/40 bg-amber-500/15 text-amber-200 shadow-[0_0_14px_-2px_rgba(251,191,36,0.4)] hover:bg-amber-500/25'
+          : 'border border-white/15 bg-white/[0.04] text-ink-800 backdrop-blur-md hover:border-white/25 hover:bg-white/[0.08]',
       )}
     >
       {active ? '★ Shortlisted' : '☆ Add to shortlist'}

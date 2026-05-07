@@ -173,8 +173,8 @@ export function VendorBrowser({
                   className={cn(
                     'rounded-full border px-2.5 py-1 text-xs font-medium transition',
                     active
-                      ? 'border-brand-500 bg-brand-500 text-white'
-                      : 'border-ink-200 bg-white text-ink-700 hover:bg-ink-100',
+                      ? 'border-brand-400 bg-brand-500 text-white shadow-[0_0_10px_rgba(106,142,255,0.4)]'
+                      : 'border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/25 hover:bg-white/[0.08]',
                   )}
                 >
                   {c.label}
@@ -195,8 +195,8 @@ export function VendorBrowser({
                   className={cn(
                     'rounded-full border px-2.5 py-1 text-xs font-medium',
                     active
-                      ? 'border-brand-500 bg-brand-500 text-white'
-                      : 'border-ink-200 bg-white text-ink-700 hover:bg-ink-100',
+                      ? 'border-brand-400 bg-brand-500 text-white shadow-[0_0_10px_rgba(106,142,255,0.4)]'
+                      : 'border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/25 hover:bg-white/[0.08]',
                   )}
                 >
                   {d}
@@ -216,7 +216,7 @@ export function VendorBrowser({
                   onClick={() => toggleArrayFilter('sectors', s)}
                   className={cn(
                     'rounded-full border px-2.5 py-1 text-xs font-medium',
-                    active ? 'border-brand-500 bg-brand-500 text-white' : 'border-ink-200 bg-white text-ink-700 hover:bg-ink-100',
+                    active ? 'border-brand-400 bg-brand-500 text-white shadow-[0_0_10px_rgba(106,142,255,0.4)]' : 'border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/25 hover:bg-white/[0.08]',
                   )}
                 >
                   {s}
@@ -236,7 +236,7 @@ export function VendorBrowser({
                   onClick={() => toggleArrayFilter('regions', r)}
                   className={cn(
                     'rounded-full border px-2.5 py-1 text-xs font-medium',
-                    active ? 'border-brand-500 bg-brand-500 text-white' : 'border-ink-200 bg-white text-ink-700 hover:bg-ink-100',
+                    active ? 'border-brand-400 bg-brand-500 text-white shadow-[0_0_10px_rgba(106,142,255,0.4)]' : 'border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/25 hover:bg-white/[0.08]',
                   )}
                 >
                   {r}
@@ -256,7 +256,7 @@ export function VendorBrowser({
                   onClick={() => update('availability', o.value as Filters['availability'])}
                   className={cn(
                     'rounded-full border px-2.5 py-1 text-xs font-medium',
-                    active ? 'border-brand-500 bg-brand-500 text-white' : 'border-ink-200 bg-white text-ink-700 hover:bg-ink-100',
+                    active ? 'border-brand-400 bg-brand-500 text-white shadow-[0_0_10px_rgba(106,142,255,0.4)]' : 'border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/25 hover:bg-white/[0.08]',
                   )}
                 >
                   {o.label}
@@ -271,7 +271,7 @@ export function VendorBrowser({
               type="checkbox"
               checked={filters.gmpOnly}
               onChange={(e) => update('gmpOnly', e.target.checked)}
-              className="h-4 w-4 rounded border-ink-300 text-brand-600 focus:ring-brand-500"
+              className="h-4 w-4 rounded border-white/30 bg-white/10 text-brand-500 focus:ring-brand-400"
             />
             GMP-experienced vendors only
           </label>
@@ -327,20 +327,20 @@ export function VendorBrowser({
                         <img
                           src={v.logoUrl}
                           alt=""
-                          className="h-10 w-10 rounded-lg border border-ink-100 object-contain bg-white p-0.5"
+                          className="h-10 w-10 rounded-lg border border-white/15 bg-white/[0.05] object-contain p-0.5 backdrop-blur"
                         />
                       ) : (
-                        <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-50 text-sm font-semibold text-brand-700">
+                        <div className="grid h-10 w-10 place-items-center rounded-lg border border-brand-400/30 bg-brand-500/15 text-sm font-semibold text-brand-200 backdrop-blur">
                           {v.companyName.slice(0, 2).toUpperCase()}
                         </div>
                       )}
                       <div>
-                        <Link href={`/client/vendors/${v.id}`} className="text-base font-semibold text-ink-900 hover:text-brand-700">
+                        <Link href={`/client/vendors/${v.id}`} className="text-base font-semibold text-ink-900 hover:text-brand-300">
                           {v.companyName}
                         </Link>
                         <div className="text-xs text-ink-500">
                           {v.locations[0] ? `${v.locations[0].city}, ${v.locations[0].country}` : '—'}
-                          {v.gmpExperience && <span className="ml-2 text-emerald-700">· GMP</span>}
+                          {v.gmpExperience && <span className="ml-2 text-emerald-300">· GMP</span>}
                         </div>
                       </div>
                     </div>
@@ -370,8 +370,8 @@ export function VendorBrowser({
                         className={cn(
                           'btn px-3 py-1.5 text-xs',
                           compareIds.includes(v.id)
-                            ? 'border border-brand-500 bg-brand-50 text-brand-800'
-                            : 'border border-ink-200 bg-white text-ink-700 hover:bg-ink-50',
+                            ? 'border border-brand-400/50 bg-brand-500/15 text-brand-200 shadow-[0_0_12px_-2px_rgba(106,142,255,0.4)]'
+                            : 'border border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/25 hover:bg-white/[0.08]',
                         )}
                       >
                         {compareIds.includes(v.id) ? 'Selected' : 'Compare'}
@@ -382,8 +382,8 @@ export function VendorBrowser({
                         className={cn(
                           'btn px-3 py-1.5 text-xs',
                           shortlistIds.has(v.id)
-                            ? 'border border-amber-300 bg-amber-50 text-amber-800'
-                            : 'border border-ink-200 bg-white text-ink-700 hover:bg-ink-50',
+                            ? 'border border-amber-400/40 bg-amber-500/15 text-amber-200 shadow-[0_0_12px_-2px_rgba(251,191,36,0.4)]'
+                            : 'border border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/25 hover:bg-white/[0.08]',
                         )}
                       >
                         {shortlistIds.has(v.id) ? '★ Shortlisted' : '☆ Shortlist'}

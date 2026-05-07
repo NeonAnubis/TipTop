@@ -253,22 +253,20 @@ export function ProfileWizard({ initial }: { initial: ProfileData }) {
                     className={cn(
                       'flex w-full items-center gap-3 rounded-lg px-2.5 py-2 text-left text-sm transition',
                       active
-                        ? 'bg-brand-50 text-brand-900'
-                        : 'text-ink-700 hover:bg-ink-100',
+                        ? 'border border-brand-400/40 bg-brand-500/15 text-brand-100 shadow-[0_0_14px_-2px_rgba(106,142,255,0.3)]'
+                        : 'text-ink-700 hover:bg-white/[0.06]',
                     )}
                   >
                     <span
                       className={cn(
                         'grid h-6 w-6 shrink-0 place-items-center rounded-full border text-xs font-semibold',
                         active
-                          ? 'border-brand-500 bg-brand-500 text-white'
+                          ? 'border-brand-400 bg-brand-500 text-white shadow-[0_0_10px_rgba(106,142,255,0.5)]'
                           : visited && stepIsValid
-                            ? 'border-emerald-500 bg-emerald-500 text-white'
+                            ? 'border-emerald-400 bg-emerald-500 text-white shadow-[0_0_10px_rgba(52,211,153,0.4)]'
                             : visited && !stepIsValid
-                              ? 'border-amber-400 bg-amber-100 text-amber-800'
-                              : stepIsValid
-                                ? 'border-ink-200 bg-white text-ink-500'
-                                : 'border-ink-200 bg-white text-ink-400',
+                              ? 'border-amber-400/50 bg-amber-500/20 text-amber-200'
+                              : 'border-white/15 bg-white/[0.05] text-ink-500',
                       )}
                     >
                       {visited && stepIsValid ? '✓' : visited && !stepIsValid ? '!' : i + 1}
@@ -281,9 +279,9 @@ export function ProfileWizard({ initial }: { initial: ProfileData }) {
           </ol>
           <div className="mt-4 space-y-2">
             <SaveIndicator status={status} lastSavedAt={lastSavedAt} />
-            <div className="flex items-center justify-between rounded-lg border border-ink-100 bg-ink-50/40 px-3 py-2 text-xs">
+            <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs backdrop-blur-md">
               <span className="text-ink-500">Status</span>
-              <span className={data.isPublished ? 'font-semibold text-emerald-700' : 'font-semibold text-ink-700'}>
+              <span className={data.isPublished ? 'font-semibold text-emerald-300' : 'font-semibold text-ink-700'}>
                 {data.isPublished ? 'Published' : 'Draft'}
               </span>
             </div>
@@ -303,7 +301,7 @@ export function ProfileWizard({ initial }: { initial: ProfileData }) {
         </div>
 
         {showStepErrors && stepErrors.length > 0 && (
-          <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          <div className="mb-6 rounded-xl border border-amber-400/30 bg-amber-500/10 p-4 text-sm text-amber-200 backdrop-blur-md">
             <div className="font-semibold">Please complete the following before continuing:</div>
             <ul className="mt-1 list-inside list-disc space-y-0.5">
               {stepErrors.map((e) => (
@@ -327,7 +325,7 @@ export function ProfileWizard({ initial }: { initial: ProfileData }) {
           />
         )}
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-2 border-t border-ink-100 pt-6">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-2 border-t border-white/10 pt-6">
           <button
             type="button"
             className="btn-secondary"
@@ -370,23 +368,23 @@ function SaveIndicator({ status, lastSavedAt }: { status: SaveStatus; lastSavedA
     return () => clearInterval(id);
   }, []);
 
-  let dot = 'bg-ink-300';
+  let dot = 'bg-white/30';
   let label = 'Auto-save on';
   if (status === 'dirty') {
-    dot = 'bg-amber-400';
+    dot = 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.5)]';
     label = 'Unsaved changes…';
   } else if (status === 'saving') {
-    dot = 'bg-brand-500 animate-pulse';
+    dot = 'bg-brand-400 animate-pulse shadow-[0_0_8px_rgba(106,142,255,0.5)]';
     label = 'Saving…';
   } else if (status === 'saved') {
-    dot = 'bg-emerald-500';
+    dot = 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]';
     label = lastSavedAt ? `Saved ${formatRelative(lastSavedAt)}` : 'Saved';
   } else if (status === 'error') {
-    dot = 'bg-red-500';
+    dot = 'bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.5)]';
     label = 'Save failed';
   }
   return (
-    <div className="flex items-center gap-2 rounded-lg border border-ink-100 bg-white px-3 py-2 text-xs text-ink-700">
+    <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-ink-700 backdrop-blur-md">
       <span className={cn('h-2 w-2 rounded-full', dot)} />
       <span>{label}</span>
     </div>
@@ -449,7 +447,7 @@ function CompanyStep({
         <img
           src={data.logoUrl}
           alt="Logo preview"
-          className="h-16 w-16 rounded-xl border border-ink-100 object-contain p-1"
+          className="h-16 w-16 rounded-xl border border-white/15 bg-white/[0.05] object-contain p-1 backdrop-blur"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
         />
       )}
@@ -545,7 +543,7 @@ function CapabilitiesStep({
         {CAPABILITY_CATEGORIES.map((cat) => {
           const level = getLevel(cat.value);
           return (
-            <div key={cat.value} className="rounded-xl border border-ink-100 bg-ink-50/30 p-4">
+            <div key={cat.value} className="rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-md">
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div>
                   <div className="text-sm font-semibold text-ink-900">{cat.label}</div>
@@ -557,7 +555,7 @@ function CapabilitiesStep({
                     onClick={() => setLevel(cat.value, null)}
                     className={cn(
                       'rounded-full border px-3 py-1 text-xs font-medium',
-                      !level ? 'border-ink-300 bg-white text-ink-700' : 'border-ink-200 bg-white text-ink-500 hover:bg-ink-100',
+                      !level ? 'border-white/25 bg-white/[0.08] text-ink-900 backdrop-blur-md' : 'border-white/15 bg-white/[0.04] text-ink-500 backdrop-blur-md hover:border-white/20 hover:bg-white/[0.07]',
                     )}
                   >
                     Not offered
@@ -570,8 +568,8 @@ function CapabilitiesStep({
                       className={cn(
                         'rounded-full border px-3 py-1 text-xs font-medium',
                         level === lv.value
-                          ? 'border-brand-500 bg-brand-500 text-white'
-                          : 'border-ink-200 bg-white text-ink-700 hover:bg-ink-100',
+                          ? 'border-brand-400 bg-brand-500 text-white shadow-[0_0_10px_rgba(106,142,255,0.4)]'
+                          : 'border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/20 hover:bg-white/[0.07]',
                       )}
                     >
                       {lv.label}
@@ -628,16 +626,16 @@ function ProjectsStep({
         Add representative projects. Use generic names if a project is confidential.
       </p>
       {data.projects.length === 0 && (
-        <div className="rounded-xl border border-dashed border-ink-200 bg-white p-6 text-center text-sm text-ink-500">
+        <div className="rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-6 text-center text-sm text-ink-500">
           No projects yet — add at least one to satisfy the prequalification.
         </div>
       )}
       <div className="space-y-4">
         {data.projects.map((p, i) => (
-          <div key={i} className="rounded-xl border border-ink-100 bg-white p-4">
+          <div key={i} className="rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md">
             <div className="flex items-center justify-between pb-3">
               <div className="text-sm font-semibold text-ink-700">Project {i + 1}</div>
-              <button type="button" onClick={() => remove(i)} className="text-xs text-red-600 hover:underline">
+              <button type="button" onClick={() => remove(i)} className="text-xs text-red-400 hover:text-red-300 hover:underline">
                 Remove
               </button>
             </div>
@@ -707,7 +705,7 @@ function ProjectsStep({
                     type="checkbox"
                     checked={p.isGmp}
                     onChange={(e) => patch(i, { isGmp: e.target.checked })}
-                    className="h-4 w-4 rounded border-ink-300 text-brand-600 focus:ring-brand-500"
+                    className="h-4 w-4 rounded border-white/30 bg-white/10 text-brand-500 focus:ring-brand-400"
                   />
                   GMP / regulated environment
                 </label>
@@ -775,8 +773,8 @@ function QualityStep({
                 className={cn(
                   'rounded-lg border px-3 py-2 text-sm font-medium',
                   data.gmpExperience === o.v
-                    ? 'border-brand-500 bg-brand-50 text-brand-800'
-                    : 'border-ink-200 bg-white text-ink-700 hover:bg-ink-50',
+                    ? 'border-brand-400/50 bg-brand-500/15 text-brand-100 shadow-[0_0_14px_-2px_rgba(106,142,255,0.4)]'
+                    : 'border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/20 hover:bg-white/[0.07]',
                 )}
                 onClick={() => update('gmpExperience', o.v)}
               >
@@ -806,18 +804,18 @@ function QualityStep({
       <div>
         <div className="flex items-center justify-between">
           <span className="label mb-0">Certifications</span>
-          <button type="button" onClick={addCert} className="text-sm font-medium text-brand-700 hover:underline">
+          <button type="button" onClick={addCert} className="text-sm font-medium text-brand-300 hover:text-brand-200 hover:underline">
             + Add
           </button>
         </div>
         {data.certifications.length === 0 && (
-          <div className="mt-3 rounded-xl border border-dashed border-ink-200 bg-white p-4 text-center text-sm text-ink-500">
+          <div className="mt-3 rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-4 text-center text-sm text-ink-500">
             No certifications yet.
           </div>
         )}
         <div className="mt-3 space-y-3">
           {data.certifications.map((c, i) => (
-            <div key={i} className="rounded-xl border border-ink-100 bg-white p-4">
+            <div key={i} className="rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md">
               <div className="grid gap-3 md:grid-cols-4">
                 <Field label="Name">
                   <input className="input" value={c.name} onChange={(e) => patchCert(i, { name: e.target.value })} />
@@ -853,7 +851,7 @@ function QualityStep({
                   value={c.reference ?? ''}
                   onChange={(e) => patchCert(i, { reference: e.target.value })}
                 />
-                <button type="button" onClick={() => removeCert(i)} className="text-xs text-red-600 hover:underline">
+                <button type="button" onClick={() => removeCert(i)} className="text-xs text-red-400 hover:text-red-300 hover:underline">
                   Remove
                 </button>
               </div>
@@ -1005,8 +1003,8 @@ function ChipMulti({
             className={cn(
               'rounded-full border px-3 py-1 text-xs font-medium transition',
               active
-                ? 'border-brand-500 bg-brand-500 text-white'
-                : 'border-ink-200 bg-white text-ink-700 hover:bg-ink-50',
+                ? 'border-brand-400 bg-brand-500 text-white shadow-[0_0_10px_rgba(106,142,255,0.4)]'
+                : 'border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/20 hover:bg-white/[0.07]',
             )}
           >
             {opt}
@@ -1027,7 +1025,7 @@ function SegmentedSelect<T extends string>({
   onChange: (v: T) => void;
 }) {
   return (
-    <div className="flex rounded-lg border border-ink-200 bg-white p-1">
+    <div className="flex rounded-lg border border-white/15 bg-white/[0.04] p-1 backdrop-blur-md">
       {options.map((o) => (
         <button
           key={o.value}
@@ -1035,7 +1033,7 @@ function SegmentedSelect<T extends string>({
           onClick={() => onChange(o.value)}
           className={cn(
             'flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition',
-            value === o.value ? 'bg-brand-600 text-white shadow-soft' : 'text-ink-700 hover:bg-ink-100',
+            value === o.value ? 'bg-brand-500 text-white shadow-[0_0_12px_-2px_rgba(106,142,255,0.5)]' : 'text-ink-700 hover:bg-white/[0.06]',
           )}
         >
           {o.label}
@@ -1067,7 +1065,7 @@ function LocationsEditor({
   return (
     <div className="space-y-2">
       {value.map((l, i) => (
-        <div key={i} className="flex flex-wrap items-end gap-2 rounded-xl border border-ink-100 bg-white p-3">
+        <div key={i} className="flex flex-wrap items-end gap-2 rounded-xl border border-white/10 bg-white/[0.04] p-3 backdrop-blur-md">
           <input className="input flex-1 min-w-[140px]" placeholder="City" value={l.city} onChange={(e) => patch(i, { city: e.target.value })} />
           <input className="input flex-1 min-w-[140px]" placeholder="Country" value={l.country} onChange={(e) => patch(i, { country: e.target.value })} />
           <button
@@ -1076,13 +1074,13 @@ function LocationsEditor({
             className={cn(
               'rounded-full border px-3 py-1 text-xs font-medium',
               l.isHeadquarters
-                ? 'border-brand-500 bg-brand-500 text-white'
-                : 'border-ink-200 bg-white text-ink-700 hover:bg-ink-100',
+                ? 'border-brand-400 bg-brand-500 text-white shadow-[0_0_10px_rgba(106,142,255,0.4)]'
+                : 'border-white/15 bg-white/[0.04] text-ink-700 backdrop-blur-md hover:border-white/20 hover:bg-white/[0.07]',
             )}
           >
             HQ
           </button>
-          <button type="button" onClick={() => remove(i)} className="text-xs text-red-600 hover:underline">
+          <button type="button" onClick={() => remove(i)} className="text-xs text-red-400 hover:text-red-300 hover:underline">
             Remove
           </button>
         </div>
@@ -1096,10 +1094,10 @@ function LocationsEditor({
 
 function ReviewCard({ label, value, hint, onEdit }: { label: string; value: string; hint?: string; onEdit: () => void }) {
   return (
-    <div className="rounded-xl border border-ink-100 bg-white p-4">
+    <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md">
       <div className="flex items-center justify-between">
         <div className="text-xs uppercase tracking-wider text-ink-500">{label}</div>
-        <button type="button" onClick={onEdit} className="text-xs font-medium text-brand-700 hover:underline">
+        <button type="button" onClick={onEdit} className="text-xs font-medium text-brand-300 hover:text-brand-200 hover:underline">
           Edit
         </button>
       </div>
