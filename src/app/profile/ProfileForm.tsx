@@ -42,7 +42,7 @@ export function ProfileForm({ initial }: { initial: InitialData }) {
     try {
       const dataUrl = await resizeImageToDataUrl(file, AVATAR_OUTPUT_PX);
       if (dataUrl.length > MAX_AVATAR_BYTES) {
-        toast('That image is too large — try a smaller one', 'error');
+        toast('That image is too large - try a smaller one', 'error');
         return;
       }
       setAvatarUrl(dataUrl);

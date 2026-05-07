@@ -226,7 +226,7 @@ function FirstRunEmpty({ company }: { company: string }) {
   const steps = [
     { n: 1, title: 'Tell us about your company', detail: 'Headquarters, year founded, sectors served and a 1-2 line description.' },
     { n: 2, title: 'Declare your capabilities', detail: 'Tag the disciplines you can deliver and your team’s depth.' },
-    { n: 3, title: 'Add reference projects & certifications', detail: 'Up to 5 minutes — they power your VQI score.' },
+    { n: 3, title: 'Add reference projects & certifications', detail: 'Up to 5 minutes - they power your VQI score.' },
   ];
   return (
     <div className="space-y-8">
@@ -279,7 +279,7 @@ function FirstRunEmpty({ company }: { company: string }) {
           ].map((p) => (
             <div key={p.label} className="rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md">
               <div className="text-xs uppercase tracking-wider text-ink-500">{p.label}</div>
-              <div className="mt-1 text-base font-semibold text-ink-900">— / 100</div>
+              <div className="mt-1 text-base font-semibold text-ink-900">- / 100</div>
               <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
                 <div className="h-full w-1/4 rounded-full bg-white/20" />
               </div>

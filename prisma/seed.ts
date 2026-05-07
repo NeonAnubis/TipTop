@@ -292,7 +292,7 @@ const VENDORS: SeedVendor[] = [
       ],
       projects: [
         {
-          name: 'Serialization rollout — 14 lines',
+          name: 'Serialization rollout - 14 lines',
           client: 'Mid-cap pharma',
           projectType: 'Process upgrade',
           scopeDelivered: 'PLC + MES integration, CSV documentation, qualification.',

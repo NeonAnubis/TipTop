@@ -5,7 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand — electric blue, pushed brighter for legibility on dark navy.
+        // Brand - electric blue, pushed brighter for legibility on dark navy.
         brand: {
           50: '#eef4ff',
           100: '#dbe6ff',
@@ -19,10 +19,10 @@ const config: Config = {
           900: '#1f3494',
           950: '#162160',
         },
-        // Ink — semantically inverted for dark-mode-first.
+        // Ink - semantically inverted for dark-mode-first.
         // ink-50 = darkest base bg, ink-950 = pure white.
         ink: {
-          50: '#0a1330',     // Deepest navy — page backgrounds
+          50: '#0a1330',     // Deepest navy - page backgrounds
           100: '#101a3e',    // Card-elevated bg / muted regions
           200: '#1a2654',    // Borders, dividers
           300: '#2c3a73',    // Hairline borders, hover bgs
@@ -32,9 +32,9 @@ const config: Config = {
           700: '#cdd2df',    // Body text
           800: '#e3e6ee',    // Strong body
           900: '#f1f3f9',    // Headings
-          950: '#ffffff',    // Pure white — on-brand text
+          950: '#ffffff',    // Pure white - on-brand text
         },
-        // Midnight — a dedicated palette for atmospheric backdrops.
+        // Midnight - a dedicated palette for atmospheric backdrops.
         midnight: {
           400: '#1a2658',
           500: '#152049',

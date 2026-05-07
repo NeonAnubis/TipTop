@@ -61,7 +61,7 @@ export function VendorProfileView({
                   <span className="chip">{vendor.headcount.toLocaleString()} staff</span>
                 )}
                 {vendor.gmpExperience && (
-                  <span className="chip-brand">GMP · {vendor.gmpYears ?? '—'} yrs</span>
+                  <span className="chip-brand">GMP · {vendor.gmpYears ?? '-'} yrs</span>
                 )}
                 {vendor.websiteUrl && (
                   <a
@@ -127,7 +127,7 @@ export function VendorProfileView({
                       {c.level.charAt(0) + c.level.slice(1).toLowerCase()}
                     </span>
                   ) : (
-                    <span className="chip text-ink-400">—</span>
+                    <span className="chip text-ink-400">-</span>
                   )}
                 </div>
               );
@@ -155,7 +155,7 @@ export function VendorProfileView({
               <div className="text-xs uppercase tracking-wider text-ink-500">Regions</div>
               <div className="mt-1 flex flex-wrap gap-1.5">
                 {vendor.regions.length === 0 ? (
-                  <span className="text-ink-400">—</span>
+                  <span className="text-ink-400">-</span>
                 ) : (
                   vendor.regions.map((r) => (
                     <span key={r} className="chip">
@@ -169,7 +169,7 @@ export function VendorProfileView({
               <div className="text-xs uppercase tracking-wider text-ink-500">Sectors</div>
               <div className="mt-1 flex flex-wrap gap-1.5">
                 {vendor.sectors.length === 0 ? (
-                  <span className="text-ink-400">—</span>
+                  <span className="text-ink-400">-</span>
                 ) : (
                   vendor.sectors.map((s) => (
                     <span key={s} className="chip">
@@ -220,7 +220,7 @@ export function VendorProfileView({
               <div className="text-xs uppercase tracking-wider text-ink-500">Quality systems</div>
               <div className="mt-1 flex flex-wrap gap-1.5">
                 {vendor.qualitySystems.length === 0 ? (
-                  <span className="text-ink-500">—</span>
+                  <span className="text-ink-500">-</span>
                 ) : (
                   vendor.qualitySystems.map((q) => (
                     <span key={q} className="chip">
@@ -234,7 +234,7 @@ export function VendorProfileView({
               <div className="text-xs uppercase tracking-wider text-ink-500">Certifications</div>
               <div className="mt-1 space-y-1">
                 {vendor.certifications.length === 0 ? (
-                  <span className="text-ink-500">—</span>
+                  <span className="text-ink-500">-</span>
                 ) : (
                   vendor.certifications.map((c) => (
                     <div

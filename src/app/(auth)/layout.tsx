@@ -4,7 +4,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="h-screen overflow-hidden">
       <div className="flex h-full flex-col md:flex-row">
-        {/* Left 2/3: image panel — hidden on small screens to keep the form fully visible */}
+        {/* Left 2/3: image panel - hidden on small screens to keep the form fully visible */}
         <aside className="relative hidden md:block md:w-2/3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -31,7 +31,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                 <span className="text-brand-300">capital projects.</span>
               </h2>
               <p className="mt-3 max-w-md text-sm text-white/70 lg:text-base">
-                A structured, scored, searchable network of verified suppliers — built for
+                A structured, scored, searchable network of verified suppliers - built for
                 regulated pharma, biotech and complex capital projects.
               </p>
               <ul className="mt-5 grid grid-cols-3 gap-4 text-xs">

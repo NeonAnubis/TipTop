@@ -52,7 +52,7 @@ export default async function VendorProfilePage({
       {searchParams.welcome === '1' && (
         <div className="mb-6 rounded-2xl border border-brand-200 bg-brand-50 p-4 text-sm text-brand-900">
           <strong className="font-semibold">Welcome to TipTop.</strong> Complete your prequalification
-          questionnaire below — your VQI score updates as you save.
+          questionnaire below - your VQI score updates as you save.
         </div>
       )}
       <ProfileWizard initial={initial} />

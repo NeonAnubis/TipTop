@@ -339,7 +339,7 @@ export function VendorBrowser({
                           {v.companyName}
                         </Link>
                         <div className="text-xs text-ink-500">
-                          {v.locations[0] ? `${v.locations[0].city}, ${v.locations[0].country}` : '—'}
+                          {v.locations[0] ? `${v.locations[0].city}, ${v.locations[0].country}` : '-'}
                           {v.gmpExperience && <span className="ml-2 text-emerald-300">· GMP</span>}
                         </div>
                       </div>

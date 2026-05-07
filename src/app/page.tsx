@@ -57,7 +57,7 @@ function Header() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
-      {/* Background layers — bottom-up:
+      {/* Background layers - bottom-up:
           1. Photographic backdrop (real pharmaceutical cleanroom) from Unsplash
           2. Brand-tinted gradient overlay (kills glare, adds depth)
           3. Heavy white-to-transparent veil so foreground text remains highly legible
@@ -89,7 +89,7 @@ function Hero() {
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-600 sm:text-lg">
               TipTop replaces fragmented prequalification spreadsheets, PDFs and email chains with a
-              structured, scored, searchable network of verified suppliers — built for regulated
+              structured, scored, searchable network of verified suppliers - built for regulated
               pharma, biotech and complex capital projects.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -571,7 +571,7 @@ function HowItWorks() {
     {
       n: '02',
       title: 'The VQI engine scores them',
-      copy: 'Capability, Capacity, Compliance and Output — weighted, transparent, and recomputed on every save.',
+      copy: 'Capability, Capacity, Compliance and Output - weighted, transparent, and recomputed on every save.',
       side: 'Score',
     },
     {
@@ -637,16 +637,16 @@ function CompareTeaser() {
             Transparent. Weighted. <span className="text-brand-300">Live.</span>
           </h2>
           <p className="mt-4 max-w-lg text-ink-600">
-            The VQI is calculated rule-first, not AI-first. Every input — capability levels, GMP
-            years, project portfolio, available capacity — has a documented weight. Vendors see
+            The VQI is calculated rule-first, not AI-first. Every input - capability levels, GMP
+            years, project portfolio, available capacity - has a documented weight. Vendors see
             exactly why they score what they do.
           </p>
           <ul className="mt-8 space-y-3 text-sm text-ink-700">
             {[
-              'Capability — depth × breadth across 7 disciplines (30%)',
-              'Output — projects + GMP + scale (25%)',
-              'Compliance — certs, quality systems, GMP years (25%)',
-              'Capacity — workload headroom + region coverage (20%)',
+              'Capability - depth × breadth across 7 disciplines (30%)',
+              'Output - projects + GMP + scale (25%)',
+              'Compliance - certs, quality systems, GMP years (25%)',
+              'Capacity - workload headroom + region coverage (20%)',
             ].map((l) => (
               <li key={l} className="flex items-start gap-3">
                 <span className="mt-0.5 grid h-5 w-5 place-items-center rounded-full bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-400/30">
@@ -726,7 +726,7 @@ function CompareTeaser() {
   );
 }
 
-// ─── Final CTA — vendor / client split ─────────────────────────────────────
+// ─── Final CTA - vendor / client split ─────────────────────────────────────
 
 function FinalCta() {
   return (

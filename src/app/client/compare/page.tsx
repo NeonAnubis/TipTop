@@ -81,7 +81,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
                         {v.companyName}
                       </Link>
                       <div className="text-xs text-ink-500">
-                        {v.locations[0] ? `${v.locations[0].city}, ${v.locations[0].country}` : '—'}
+                        {v.locations[0] ? `${v.locations[0].city}, ${v.locations[0].country}` : '-'}
                       </div>
                     </div>
                   </div>
@@ -125,7 +125,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
                             {lv ? (
                               <span className="chip-brand">{lv.charAt(0) + lv.slice(1).toLowerCase()}</span>
                             ) : (
-                              <span className="text-xs text-ink-400">—</span>
+                              <span className="text-xs text-ink-400">-</span>
                             )}
                           </li>
                         );
@@ -140,7 +140,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
               {ordered.map((v) => (
                 <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   {v.gmpExperience ? (
-                    <span className="chip-brand">Yes · {v.gmpYears ?? '—'} yrs</span>
+                    <span className="chip-brand">Yes · {v.gmpYears ?? '-'} yrs</span>
                   ) : (
                     <span className="chip text-ink-500">No</span>
                   )}
@@ -151,7 +151,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
             <CompareRow label="Headcount">
               {ordered.map((v) => (
                 <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
-                  {v.headcount ? v.headcount.toLocaleString() : '—'}
+                  {v.headcount ? v.headcount.toLocaleString() : '-'}
                 </td>
               ))}
             </CompareRow>
@@ -161,7 +161,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
                 <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   <div className="flex flex-wrap gap-1.5">
                     {v.sectors.length === 0 ? (
-                      <span className="text-ink-400">—</span>
+                      <span className="text-ink-400">-</span>
                     ) : (
                       v.sectors.map((s) => <span key={s} className="chip">{s}</span>)
                     )}
@@ -175,7 +175,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
                 <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   <div className="flex flex-wrap gap-1.5">
                     {v.regions.length === 0 ? (
-                      <span className="text-ink-400">—</span>
+                      <span className="text-ink-400">-</span>
                     ) : (
                       v.regions.map((r) => <span key={r} className="chip">{r}</span>)
                     )}
@@ -200,7 +200,7 @@ export default async function ComparePage({ searchParams }: { searchParams: { id
                 <td key={v.id} className="border-b border-white/10 bg-white/[0.03] p-4 align-top backdrop-blur-md">
                   <div className="flex flex-wrap gap-1.5">
                     {v.certifications.length === 0 ? (
-                      <span className="text-ink-400">—</span>
+                      <span className="text-ink-400">-</span>
                     ) : (
                       v.certifications.map((c) => <span key={c.id} className="chip">{c.name}</span>)
                     )}

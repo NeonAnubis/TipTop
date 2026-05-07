@@ -627,7 +627,7 @@ function ProjectsStep({
       </p>
       {data.projects.length === 0 && (
         <div className="rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-6 text-center text-sm text-ink-500">
-          No projects yet — add at least one to satisfy the prequalification.
+          No projects yet - add at least one to satisfy the prequalification.
         </div>
       )}
       <div className="space-y-4">
@@ -652,7 +652,7 @@ function ProjectsStep({
                   value={p.projectType ?? ''}
                   onChange={(e) => patch(i, { projectType: e.target.value })}
                 >
-                  <option value="">—</option>
+                  <option value="">-</option>
                   {PROJECT_TYPES.map((t) => (
                     <option key={t} value={t}>
                       {t}
@@ -666,7 +666,7 @@ function ProjectsStep({
                   value={p.sector ?? ''}
                   onChange={(e) => patch(i, { sector: e.target.value })}
                 >
-                  <option value="">—</option>
+                  <option value="">-</option>
                   {SECTOR_OPTIONS.map((s) => (
                     <option key={s} value={s}>
                       {s}
@@ -680,7 +680,7 @@ function ProjectsStep({
                   value={p.valueRange ?? ''}
                   onChange={(e) => patch(i, { valueRange: e.target.value })}
                 >
-                  <option value="">—</option>
+                  <option value="">-</option>
                   {PROJECT_VALUE_RANGES.map((r) => (
                     <option key={r} value={r}>
                       {r}
@@ -943,8 +943,8 @@ function ReviewStep({
         </div>
       )}
       <div className="grid gap-3 md:grid-cols-3">
-        <ReviewCard label="Company" value={data.companyName || '—'} hint={data.description?.slice(0, 60)} onEdit={() => onJump('company')} />
-        <ReviewCard label="Headcount" value={data.headcount ? data.headcount.toLocaleString() : '—'} onEdit={() => onJump('organisation')} />
+        <ReviewCard label="Company" value={data.companyName || '-'} hint={data.description?.slice(0, 60)} onEdit={() => onJump('company')} />
+        <ReviewCard label="Headcount" value={data.headcount ? data.headcount.toLocaleString() : '-'} onEdit={() => onJump('organisation')} />
         <ReviewCard label="Capabilities declared" value={`${totals.caps}/7`} onEdit={() => onJump('capabilities')} />
         <ReviewCard label="Projects" value={String(totals.projects)} onEdit={() => onJump('projects')} />
         <ReviewCard label="Certifications" value={String(totals.certs)} onEdit={() => onJump('quality')} />

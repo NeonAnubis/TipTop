@@ -46,7 +46,7 @@ export default async function VendorPreviewPage() {
       <div className="rounded-2xl border border-brand-400/30 bg-brand-500/15 p-3 text-xs text-brand-100 backdrop-blur">
         This is what clients see when they open your profile.
         {!vendor.isPublished && (
-          <> It is not yet visible — finish the PQQ and publish to go live.</>
+          <> It is not yet visible - finish the PQQ and publish to go live.</>
         )}
       </div>
 
